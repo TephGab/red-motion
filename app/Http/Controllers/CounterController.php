@@ -16,7 +16,6 @@ class CounterController extends Controller
     public function index()
     {
         $userId = Auth::id();
-        //$user = auth('sanctum')->user();
         $acs = Counter::with('user')->where('user_id', $userId)->first();
 
         return response()->json(["acs"=>$acs]);
