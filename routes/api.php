@@ -15,10 +15,8 @@ use App\Http\Controllers\CounterController;
 |
 */
 
-Route::get('/user', function (Request $request) {
+Route::middleware('auth:web')->get('/user', function (Request $request) {
     return $request->user();
 });
 
 Route::resource('counter', CounterController::class);
-
-// Route::middleware('auth:api')->
