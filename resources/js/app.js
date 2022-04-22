@@ -13,10 +13,11 @@ import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 
 Vue.component('create-counter', require('./pages/counter/Create.vue').default);
+Vue.component('edit-counter', require('./pages/counter/Edit.vue').default);
 
 import Index from "./pages/counter/Index.vue";
 import Create from "./pages/counter/Create.vue";
-// import CounterEdit from "../pages/counter/CounterEdit.vue";
+import Edit from "./pages/counter/Edit.vue";
 
 const routes = [
     {
@@ -25,10 +26,16 @@ const routes = [
         component: Index
     },
     {
-        path: '/create',
+        path: '/counter/create',
         // name: 'counter.create',
         component: Create
-    }
+    },
+    {
+        path: '/counter/:id/edit',
+        // name: 'counter.edit',
+        component: Edit,
+        props: true
+    },
 ]
 
 const router = new VueRouter({

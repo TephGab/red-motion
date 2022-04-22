@@ -15,38 +15,11 @@ class CounterController extends Controller
      */
     public function index()
     {
-        $id = 1;
-        $acs = 0;
-        $acs = Counter::with('user')->where('user_id', $id)->first();
+        $userId = Auth::id();
+        //$user = auth('sanctum')->user();
+        $acs = Counter::with('user')->where('user_id', $userId)->first();
 
-        if($acs == null){
-            $acs = 0;
-        }
-
-        $totalCompleted = 0;
-        $totalRestarted = 0;
-
-       // count($acs->completedAc) > 0 ?? $totalCompleted = count($acs->completedAc) : $totalCompleted = 0;
-        
-       if($acs){  
-        if (count($acs->completedAc) > 0) {
-            $totalCompleted = count($acs->completedAc);
-          } 
-          if(count($acs->restartedAc) > 0){
-            $totalRestarted = count($acs->restartedAc);
-          }
-        }
-
-      //  $totalDuplicated = count($acs[0]->duplicatedAc);
-        $totalAcs = $totalCompleted +  $totalRestarted;
-
-        return response()->json([
-            'acs' =>  $acs,
-            'totalCompleted' =>  $totalCompleted,
-            'totalRestarted' =>  $totalRestarted,
-            //'totalDuplicated' => $totalDuplicated,
-            'totalAcs' =>  $totalAcs
-         ]);
+        return response()->json(["acs"=>$acs]);
     }
 
     /**
@@ -194,7 +167,9 @@ class CounterController extends Controller
      */
     public function edit($id)
     {
-        //
+        $ac = Counter::findOrFail($id);
+
+        return response()->json($ac);
     }
 
     /**
@@ -206,7 +181,111 @@ class CounterController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $wordToremove = array("Review", "of", "has", "Do", "you", "want", "to", "dismiss", "this", "Session", "been", "set", "-", "?", ".", "x");
+        $stringWordRemoved = str_replace($wordToremove,"",$request->acs);
+        $trimWordRemoved = trim($stringWordRemoved);
+        $nameRemoved = preg_replace("/\(([^()]*+|(?R))*\)/","", $trimWordRemoved);
+        $allWhiteSpaceRemoved = preg_replace('/\s+/', '',  $nameRemoved);
+        $completedArray = array();
+        $restartArray = array();
+        $duplicatesArray = array();
+
+        //loop on completed
+        $tempCompleted = null;
+        $tempRestart = null;
+
+        while (strlen($allWhiteSpaceRemoved) >= 1) {
+            $isCompletedOrRestartCheck = substr($allWhiteSpaceRemoved, 0, 10);
+            if (str_ends_with($isCompletedOrRestartCheck, 'c')) {
+                        $tempCompleted = substr($allWhiteSpaceRemoved, 0, 18);
+                        $allWhiteSpaceRemoved = substr($allWhiteSpaceRemoved, 18);
+                        //Format completed ac
+                        $part1 = substr($tempCompleted, 0, 3);
+                        $part2 = substr($tempCompleted, 3, 3);
+                        $part3 = substr($tempCompleted, 6, 3);
+                        $part4 = substr($tempCompleted, 9, 9);
+                        $part1 = '('.$part1.'-';
+                        $part2 = $part2.'-';
+                        $part3 = $part3.'-';
+                        $part4 = $part4.') ';
+                        $formatedCompletedAC = $part1.$part2.$part3.$part4;
+                        $checkRestartDuplicateFormat = $part1.$part2.$part3.'restart) ';
+                        
+                        //Checking for duplicates access codes -- completed
+                        if(in_array($formatedCompletedAC, $completedArray)) {
+                            array_push($duplicatesArray, $formatedCompletedAC);
+                        }
+                        elseif(in_array($checkRestartDuplicateFormat, $restartArray)) {
+                            //Finding index of the duplicate access code
+                            $duplicateAcIndex = array_search($checkRestartDuplicateFormat, $restartArray);
+                            //$restartArray = array_slice($restartArray, $duplicateAcIndex, 1);
+                            unset($restartArray[$duplicateAcIndex]);
+                            array_push($duplicatesArray, $formatedCompletedAC);
+                            array_push($completedArray, $formatedCompletedAC);
+                        }
+                        else{
+                            array_push($completedArray, $formatedCompletedAC);
+                        }
+                        //End checking for duplicates access codes -- completed        
+                }
+            elseif (str_ends_with($isCompletedOrRestartCheck, 'r')) {
+                $tempRestart = substr($allWhiteSpaceRemoved, 0, 16);
+                $allWhiteSpaceRemoved = substr($allWhiteSpaceRemoved, 16);
+                //Format completed ac
+                $part1 = substr($tempRestart, 0, 3);
+                $part2 = substr($tempRestart, 3, 3);
+                $part3 = substr($tempRestart, 6, 3);
+                $part4 = substr($tempRestart, 9, 7);
+                $part1 = '('.$part1.'-';
+                $part2 = $part2.'-';
+                $part3 = $part3.'-';
+                $part4 = $part4.') ';
+                $formatedRestartAC = $part1.$part2.$part3.$part4;
+                $checkCompletedDuplicateFormat = $part1.$part2.$part3.'completed';
+
+                //Checking for duplicates access codes --restart
+                 if(in_array($checkCompletedDuplicateFormat, $completedArray) || in_array($formatedRestartAC, $restartArray)) {
+                    array_push($duplicatesArray, $formatedRestartAC);
+                }
+                else{
+                    array_push($restartArray, $formatedRestartAC);
+                }
+                //End checking for duplicates access codes --restart
+            }
+            else {
+                $tempRestart = substr($allWhiteSpaceRemoved, 0, 16);
+                $allWhiteSpaceRemoved = substr($allWhiteSpaceRemoved, 16);
+                //Format Restart ac
+                $part1 = substr($tempRestart, 0, 3);
+                $part2 = substr($tempRestart, 3, 3);
+                $part3 = substr($tempRestart, 6, 3);
+                $part4 = substr($tempRestart, 9, 7);
+                $part1 = '('.$part1.'-';
+                $part2 = $part2.'-';
+                $part3 = $part3.'-';
+                $part4 = $part4.'restart) ';
+                $formatedRestartAC = $part1.$part2.$part3.$part4;
+                $checkCompletedDuplicateFormat = $part1.$part2.$part3.'completed';
+
+                //Checking for duplicates access codes --restart
+                 if(in_array($checkCompletedDuplicateFormat, $completedArray) || in_array($formatedRestartAC, $restartArray)) {
+                    array_push($duplicatesArray, $formatedRestartAC);
+                }
+                else{
+                    array_push($restartArray, $formatedRestartAC);
+                }
+                //End checking for duplicates access codes --restart
+            }
+        }
+        $counter = Counter::findOrFail($id);
+
+        $mergeCompleted = array_unique(array_merge($completedArray, $counter->completedAc));
+        $mergeRestart = array_unique(array_merge($restartArray, $counter->restartedAc));
+        
+        $counter->update(['completedAc'=>$mergeCompleted]);
+        $counter->update(['restartedAc'=>$mergeRestart]);
+        
+        return response()->json($counter);
     }
 
     /**
