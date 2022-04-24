@@ -140,11 +140,9 @@ class CounterController extends Controller
         $counter->user_id = $request->id;
         $counter->save();
 
-        //return new CounterResource($counter);
         return response()->json([
             'acs' => $counter
         ]);
-       /// return new CounterResource($counter);
     }
 
     /**
@@ -276,13 +274,19 @@ class CounterController extends Controller
                 //End checking for duplicates access codes --restart
             }
         }
+
         $counter = Counter::findOrFail($id);
 
-        $mergeCompleted = array_unique(array_merge($completedArray, $counter->completedAc));
-        $mergeRestart = array_unique(array_merge($restartArray, $counter->restartedAc));
+        $newCompleted = array_diff($completedArray, $counter->completedAc);
+        $newRestarted = array_diff($restartArray, $counter->restartedAc);
+
+        $mergeCompleted = array_unique(array_merge($newCompleted , $counter->completedAc));
+        $mergeRestart = array_unique(array_merge($newRestarted, $counter->restartedAc));
+       // $mergeduplicates = array_unique(array_merge($duplicatesArray, $counter->duplicatedAc));
         
         $counter->update(['completedAc'=>$mergeCompleted]);
         $counter->update(['restartedAc'=>$mergeRestart]);
+        // $counter->update(['duplicatedAc'=>$mergeduplicates]);
         
         return response()->json($counter);
     }
@@ -295,6 +299,8 @@ class CounterController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $counter = Counter::findOrFail($id);
+        Counter::destroy($id);
+        return response()->noContent();
     }
 }

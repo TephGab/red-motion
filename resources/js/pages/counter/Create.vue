@@ -1,6 +1,6 @@
 <template>
     <div>
-        <button type="button" class="btn btn-primary" @click="newModal" data-backdrop="static">
+        <button type="button" class="btn btn-default btn-xs" @click="newModal" data-backdrop="static">
             <i class="fa fa-plus"></i> Add access codes
         </button>
 
@@ -46,8 +46,9 @@ export default {
         axios
             .post("/api/counter", { acs: this.accessCodes, id: this.userId })
             .then((response) => { 
+                this.$emit('acs-added', response);
+                $("#acsModal").modal("hide");
                 console.log('acs created successfuly');
-                 $("#acsModal").modal("hide");
                 });
         },
         newModal() {

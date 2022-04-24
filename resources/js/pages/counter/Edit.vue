@@ -1,6 +1,6 @@
 <template>
     <div>
-        <button type="button" class="btn btn-primary" @click="editModal" data-backdrop="static">
+        <button type="button" class="btn btn-default btn-xs" @click="editModal" data-backdrop="static">
             <i class="fa fa-plus"></i> add more access codes
         </button>
 
@@ -49,7 +49,9 @@ export default {
             axios
                 .patch("/api/counter/"+this.idToUpdate, { acs: this.accessCode})
                 .then((response) => {
+                    this.$emit('acs-updated', response);
                     $("#acsModal").modal("hide");
+                    console.log('acs has beeen updated successfuly');
                 })
         },
      

@@ -4,13 +4,16 @@
             <div class="card">
               <div class="card-header">
                 <div v-if="editMode">
-                  <edit-counter class="card-title" :id-to-update=idToUpdate></edit-counter>
+                  <edit-counter class="card-title" @acs-updated="refreshUpdatedAcs" :id-to-update=idToUpdate></edit-counter>
                 </div>
                 <div v-else>
-                  <create-counter class="card-title" :user-id=userId></create-counter>
+                  <create-counter class="card-title" @acs-added="refreshAcs" :user-id=userId></create-counter>
                 </div>
-
+                
                 <div class="card-tools">
+                  <div class="btn btn-tool text-danger" @click="deleteAc">
+                    <i class="fa fa-trash" aria-hidden="true"></i>
+                  </div>
                   <button type="button" class="btn btn-tool" data-card-widget="collapse">
                     <i class="fas fa-minus"></i>
                   </button>
@@ -88,7 +91,7 @@
 </template>
 
 <script>
-
+ import Swal from 'sweetalert2'
 export default {
      props: ['userId'],
       data() {
@@ -97,6 +100,55 @@ export default {
             editMode: false,
             idToUpdate: ''
       };
+      },
+
+      methods:{
+        deleteAc(){
+          Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes!'
+          }).then((result) => {
+            if (result.isConfirmed) {
+                 axios
+            axios.delete('/api/counter/' + this.idToUpdate)
+            .then((response) => {
+              axios
+              .get("/api/counter")
+              .then((response) => {
+                  this.acs = response.data;
+                  this.acs.acs ? this.editMode = true : this.editMode = false;
+                  this.idToUpdate = this.acs.acs.id;
+                  });
+                  console.log('deleted Succesfuly');
+                  location.reload();
+                  Swal.fire('Deleted!', 'Ac-counter has been reset.','success')
+                  });
+            }
+          })
+        },
+
+         refreshAcs(acs){
+            axios.get("/api/counter")
+            .then((response) => {
+                this.acs = response.data;
+                this.acs.acs ? this.editMode = true : this.editMode = false;
+                this.idToUpdate = this.acs.acs.id;
+                });
+        },
+        refreshUpdatedAcs(acs){
+             axios
+            .get("/api/counter")
+            .then((response) => {
+                this.acs = response.data;
+                this.acs.acs ? this.editMode = true : this.editMode = false;
+                this.idToUpdate = this.acs.acs.id;
+                });
+        },
       },
 
       created() {
