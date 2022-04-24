@@ -89,6 +89,12 @@
         <main class="py-4">
             @yield('content')
         </main>
+        <footer class="fixed-bottom bg-dark h-10" style="font-size: 10px; opacity: 0.7; width: 100%;">
+            <span>Developed by <strong>Teph Gab</strong></span>
+            <div class="float-right d-none d-sm-inline-block">
+                <b>Version</b> 1.0
+            </div>
+        </footer>
     </div>
     <!-- REQUIRED SCRIPTS -->
 <!-- jQuery -->
