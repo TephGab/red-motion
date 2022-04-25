@@ -143,6 +143,7 @@ export default {
                 this.acs = response.data;
                 this.acs.acs ? this.editMode = true : this.editMode = false;
                 this.idToUpdate = this.acs.acs.id;
+                this.copyText = 'Copy';
                 });
         },
        
@@ -153,6 +154,7 @@ export default {
                 this.acs = response.data;
                 this.acs.acs ? this.editMode = true : this.editMode = false;
                 this.idToUpdate = this.acs.acs.id;
+                this.copyText = 'Copy';
               });
         },
 

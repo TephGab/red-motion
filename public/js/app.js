@@ -5677,6 +5677,7 @@ __webpack_require__.r(__webpack_exports__);
         _this2.acs = response.data;
         _this2.acs.acs ? _this2.editMode = true : _this2.editMode = false;
         _this2.idToUpdate = _this2.acs.acs.id;
+        _this2.copyText = 'Copy';
       });
     },
     refreshUpdatedAcs: function refreshUpdatedAcs(acs) {
@@ -5686,6 +5687,7 @@ __webpack_require__.r(__webpack_exports__);
         _this3.acs = response.data;
         _this3.acs.acs ? _this3.editMode = true : _this3.editMode = false;
         _this3.idToUpdate = _this3.acs.acs.id;
+        _this3.copyText = 'Copy';
       });
     },
     copy: function copy() {
