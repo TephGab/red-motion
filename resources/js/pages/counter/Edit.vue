@@ -1,16 +1,16 @@
 <template>
     <div>
-        <button type="button" class="btn btn-default btn-xs" @click="editModal" data-backdrop="static">
+        <button type="button" class="btn btn-default btn-xs" data-backdrop="static" @click="editModal">
             <i class="fa fa-plus"></i> add more access codes
         </button>
 
        <!-- Modal -->
-        <div class="modal fade bd-example-modal-lg" id="acsModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal fade bd-example-modal-lg" id="acsModal" tabindex="-1" role="dialog" data-backdrop="static" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="opacity: 0.9">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLongTitle">Updating acs</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                     </button>
                     </div>
@@ -18,11 +18,12 @@
                     <form>
                         <div class="mb-3">
                         <textarea class="form-control" id="accessCodes" rows="6" v-model="accessCode"></textarea>
+                         <span v-if="errors.acs" class="text-warning text-italique  error">{{ errors.acs[0] }}</span>
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                     <button type="button" class="btn btn-primary" @click="updateAcs">Update</button>
                 </div>
             </div>
@@ -40,6 +41,7 @@ export default {
         return {
              accessCodes: "",
              accessCode: "",
+             errors: [],
             }
         },
 
@@ -53,6 +55,9 @@ export default {
                     $("#acsModal").modal("hide");
                     console.log('acs has beeen updated successfuly');
                 })
+                 .catch(error => {
+                        this.errors = error.response.data.errors;
+                });
         },
      
         editModal() {
@@ -65,6 +70,7 @@ export default {
                 });
             $("#acsModal").modal("show");
             $("#acsModal").modal("handleUpdate");
+            $("#acsModal").modal({"backdrop": "static"});
         },
   },
 

@@ -5,7 +5,7 @@
         </button>
 
        <!-- Modal -->
-        <div class="modal fade bd-example-modal-lg" id="acsModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal fade bd-example-modal-lg" id="acsModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="opacity: 0.9">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
@@ -18,6 +18,7 @@
                     <form>
                         <div class="mb-3">
                         <textarea class="form-control" id="accessCodes" rows="6" v-model="accessCodes"></textarea>
+                        <span v-if="errors.acs" class="text-warning error">{{ errors.acs[0] }}</span>
                         </div>
                     </form>
                 </div>
@@ -38,6 +39,7 @@ export default {
       data() {
         return {
             accessCodes: "",
+            errors: [],
         }
         },
 
@@ -49,7 +51,10 @@ export default {
                 this.$emit('acs-added', response);
                 $("#acsModal").modal("hide");
                 console.log('acs created successfuly');
-                });
+                })
+                .catch(error => {
+                        this.errors = error.response.data.errors;
+                });;
         },
         newModal() {
             $("#acsModal").modal("show");

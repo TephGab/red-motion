@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Counter;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\CounterRequest;
 
 class CounterController extends Controller
 {
@@ -37,12 +38,19 @@ class CounterController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CounterRequest $request)
     {
-        $wordToremove = array("Review", "of", "has", "Do", "you", "want", "to", "dismiss", "this", "Session", "been", "set", "-", "?", ".", "x");
-        $stringWordRemoved = str_replace($wordToremove,"", $request->acs);
-        $trimWordRemoved = trim($stringWordRemoved); 
-        $nameRemoved = preg_replace("/\(([^()]*+|(?R))*\)/","", $trimWordRemoved); 
+        if (str_starts_with($request->acs, '(')) {
+            $wordToremove = array("(",")",",","-");
+            $stringWordRemoved = str_replace($wordToremove,"",$request->acs);
+            $nameRemoved = $trimWordRemoved = trim($stringWordRemoved);
+        }
+        else{
+            $wordToremove = array("Review", "of", "has", "Do", "you", "want", "to", "dismiss", "this", "Session", "been", "set", "-", "?", ".", "x");
+            $stringWordRemoved = str_replace($wordToremove,"",$request->acs);
+            $trimWordRemoved = trim($stringWordRemoved);
+            $nameRemoved = preg_replace("/\(([^()]*+|(?R))*\)/","", $trimWordRemoved);
+        }
         $allWhiteSpaceRemoved = preg_replace('/\s+/', '',  $nameRemoved); 
         $completedArray = array();
         $restartArray = array();
@@ -176,12 +184,19 @@ class CounterController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CounterRequest $request, $id)
     {
-        $wordToremove = array("Review", "of", "has", "Do", "you", "want", "to", "dismiss", "this", "Session", "been", "set", "-", "?", ".", "x");
-        $stringWordRemoved = str_replace($wordToremove,"",$request->acs);
-        $trimWordRemoved = trim($stringWordRemoved);
-        $nameRemoved = preg_replace("/\(([^()]*+|(?R))*\)/","", $trimWordRemoved);
+        if (str_starts_with($request->acs, '(')) {
+            $wordToremove = array("(",")",",","-");
+            $stringWordRemoved = str_replace($wordToremove,"",$request->acs);
+            $nameRemoved = $trimWordRemoved = trim($stringWordRemoved);
+        }
+        else{
+            $wordToremove = array("Review", "of", "has", "Do", "you", "want", "to", "dismiss", "this", "Session", "been", "set", "-", "?", ".", "x");
+            $stringWordRemoved = str_replace($wordToremove,"",$request->acs);
+            $trimWordRemoved = trim($stringWordRemoved);
+            $nameRemoved = preg_replace("/\(([^()]*+|(?R))*\)/","", $trimWordRemoved);
+        }
         $allWhiteSpaceRemoved = preg_replace('/\s+/', '',  $nameRemoved);
         $completedArray = array();
         $restartArray = array();

@@ -14,7 +14,29 @@
                      <i class="fas fa-copy"></i> {{ copyText }}</button>
                 </div>
                 <div class="card-tools">
-                  <div v-show="acs.acs" class="btn btn-tool text-danger" @click="deleteAc">
+                  <!-- Search -->
+                  <!-- <div class="d-md-inline-block">
+                    <button class="btn btn-sm ml-1 p-0 searchButton" data-widget="navbar-search" href="#" role="button">
+                      <i class="fas fa-search"></i>
+                    </button>
+                    <div class="navbar-search-block">
+                      <form class="form-inline">
+                        <div class="input-group input-group-sm">
+                          <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
+                          <div class="input-group-append">
+                            <button class="btn btn-navbar" type="submit">
+                              <i class="fas fa-search"></i>
+                            </button>
+                            <button class="btn btn-navbar" type="button" data-widget="navbar-search">
+                              <i class="fas fa-times"></i>
+                            </button>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                  </div> -->
+                  <!-- End Search -->
+                  <div v-show="acs.acs" class="btn btn-tool text-danger deleteButton" @click="deleteAc">
                     <i class="fa fa-trash" aria-hidden="true"></i>
                   </div>
                   <button type="button" class="btn btn-tool" data-card-widget="collapse">
@@ -184,43 +206,3 @@ export default {
         }
 }
 </script>
-
-<style scoped>
-.tooltip {
-  position: relative;
-  display: inline-block;
-}
-
-.tooltip .tooltiptext {
-  visibility: hidden;
-  width: 140px;
-  background-color: #555;
-  color: #fff;
-  text-align: center;
-  border-radius: 6px;
-  padding: 5px;
-  position: absolute;
-  z-index: 1;
-  bottom: 150%;
-  left: 50%;
-  margin-left: -75px;
-  opacity: 0;
-  transition: opacity 0.3s;
-}
-
-.tooltip .tooltiptext::after {
-  content: "";
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  margin-left: -5px;
-  border-width: 5px;
-  border-style: solid;
-  border-color: #555 transparent transparent transparent;
-}
-
-.tooltip:hover .tooltiptext {
-  visibility: visible;
-  opacity: 1;
-}
-</style>
