@@ -1,117 +1,56 @@
-<!doctype html>
+<!Doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+  <!-- CSRF Token -->
+  <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'AC-COUNTER') }}</title>
-    <link rel="icon" type="image/icon" href="{{ asset('/img/logo2.png') }}">
+  <title>{{ config('app.name', 'MisterHbranding') }}</title>
 
-    <!-- Google Font: Source Sans Pro -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-  <!-- Font Awesome Icons -->
-  <link rel="stylesheet" href="{{ asset('plugins/fontawesome-free/css/all.min.css') }}">
-  <!-- overlayScrollbars -->
-  <!-- <link rel="stylesheet" href="{{ asset('plugins/overlayScrollbars/css/OverlayScrollbars.min.css') }}"> -->
-  <!-- Theme style -->
+  <meta content="" name="description">
+  <meta content="" name="keywords">
 
-   <!-- Styles -->
-   <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-   <link rel="stylesheet" href="{{ asset('css/bootstrap/app.css') }}">
-   <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css') }}">
-        
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{{ asset('assets/vendor/animate.css/animate.min.css') }}" rel="stylesheet">
+  <link href="{{ asset('assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+  <link href="{{ asset('assets/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
+  <link href="{{ asset('assets/vendor/boxicons/css/boxicons.min.css') }}" rel="stylesheet">
+  <link href="{{ asset('assets/vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet">
+  <link href="{{ asset('assets/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
 </head>
-<body class="dark-mode layout-navbar-fixed layout-footer-fixed">
-    <div id="app">
-        <nav class="navbar navbar-expand-md navbar-dark bg-dark shadow-sm">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/home') }}">
-                    {{ config('app.name', 'AC-COUNTER') }}
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav me-auto">
+<body>
+    @include('layouts._partials.topnav')
+    @include('layouts._partials.header')
 
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ms-auto">
-                        <!-- Authentication Links -->
-                        @guest
-                            @if (Route::has('login'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                                </li>
-                            @endif
-
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" data-widget="fullscreen" href="#" role="button">
-                                <i class="fas fa-expand-arrows-alt"></i>
-                                </a>
-                            </li>
-                        @endguest
-                    </ul>
-                </div>
-            </div>
-        </nav>
-
-        <main class="py-4">
-            @yield('content')
-        </main>
-        <footer class="fixed-bottom bg-dark pl-5 pr-5" style="font-size: 11px; opacity: 0.7; width: 100%;">
-            <span>Developed by <strong>Teph Gab</strong></span>
-            <div class="float-right d-none d-sm-inline-block">
-                <b>Version</b> 1.0
-            </div>
-        </footer>
+    <div class="container-fluid m-0 p-0 wrapper">
+        @yield('content')
     </div>
-    <!-- REQUIRED SCRIPTS -->
-<!-- jQuery -->
-<script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
-<!-- Bootstrap -->
-<script src="{{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-<!-- overlayScrollbars -->
-<script src="{{ asset('plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
-<!-- AdminLTE App -->
-<script src="{{ asset('dist/js/adminlte.js') }}"></script>
 
-<!-- PAGE PLUGINS -->
-<!-- jQuery Mapael -->
-<!-- <script src="{{ asset('plugins/jquery-mousewheel/jquery.mousewheel.js') }}"></script>
-<script src="{{ asset('plugins/raphael/raphael.min.js') }}"></script>
-<script src="{{ asset('plugins/jquery-mapael/jquery.mapael.min.js') }}"></script>
-<script src="{{ asset('plugins/jquery-mapael/maps/usa_states.min.js') }}"></script> -->
+    @include('layouts._partials.footer')
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="{{ asset('assets/vendor/purecounter/purecounter_vanilla.js') }}"></script>
+  <script src="{{ asset('assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+  <script src="{{ asset('assets/vendor/glightbox/js/glightbox.min.js') }}"></script>
+  <script src="{{ asset('assets/vendor/isotope-layout/isotope.pkgd.min.js') }}"></script>
+  <script src="{{ asset('assets/vendor/swiper/swiper-bundle.min.js') }}"></script>
+  <script src="{{ asset('assets/vendor/waypoints/noframework.waypoints.js') }}"></script>
+  <script src="{{ asset('assets/vendor/php-email-form/validate.js') }}"></script>
+
+  <!-- Template Main JS File -->
+  <script src="{{ asset('assets/js/main.js') }}"></script>
+
 </body>
+
 </html>
