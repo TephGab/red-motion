@@ -1,43 +1,42 @@
-/**
- * First we will load all of this project's JavaScript dependencies which
- * includes Vue and other libraries. It is a great starting point when
- * building robust, powerful web applications using Vue and Laravel.
- */
+import "./bootstrap";
 
-require('./bootstrap');
+import { createApp } from "vue";
+import router from './router';
 
-window.Vue = require('vue').default;
+import AddBook from './admin/books/Create.vue';
 
-import VueRouter from 'vue-router';
-
-Vue.use(VueRouter)
+// createApp('create-book', require('./admin/books/Create.vue').default);
 
 
-import Index from "./pages/Index.vue";
+const app = createApp();
+app.component('AddBook', AddBook);
+app.use(router).mount("#app");
 
+// require('./bootstrap');
 
-const routes = [
-    {
-        path: '/',
-        name: 'index',
-        component: Index
-    }
-]
+// window.Vue = require('vue').default;
 
-const router = new VueRouter({
-    mode: "history",
-    routes
-});
+// import VueRouter from 'vue-router';
 
+// Vue.use(VueRouter)
+
+// import Index from "./pages/Index.vue";
+
+// const routes = [
+//     {
+//         path: '/',
+//         name: 'index',
+//         component: Index
+//     }
+// ]
+
+// const router = new VueRouter({
+//     mode: "history",
+//     routes
+// });
 
 // Vue.component('example-component', require('./components/ExampleComponent.vue'));
 
-
-const app = new Vue({
-    router
-}).$mount("#app");
-
 // const app = new Vue({
-//     el: '#app',
-//     router: router
-// });
+//     router
+// }).$mount("#app");
