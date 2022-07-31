@@ -17,16 +17,15 @@ class BookController extends Controller
     public function index()
     {
         if(request('q') !== null){
-            $books['data'] = Book::where('title', 'like', '%' . request('q') . '%')->get();
+            $books['data'] = Book::where('title', 'like', '%' . request('q') . '%')->orderBy('created_at', 'DESC')->get();
 
             return response()->json($books);
         }
         else{
+            $books['data'] = Book::orderBy('created_at', 'DESC')->get();
 
-            return BookResource::collection(Book::all());
-            // $books = Book::orderBy('created_at', 'DESC')->paginate(6);
-
-           // return response()->json($books);
+            return response()->json($books);
+        //    return BookResource::collection(Book::all());
         }
     }
 
@@ -63,7 +62,9 @@ class BookController extends Controller
      */
     public function show(Book $book)
     {
-        //
+        $b = Book::findOrFail($book->id);
+
+        return response()->json($b);
     }
 
     /**
@@ -75,7 +76,10 @@ class BookController extends Controller
      */
     public function update(Request $request, Book $book)
     {
-        //
+        $b = Book::findOrFail($book->id);
+
+        $b->update(['title'=>$request->title]);
+        $b->update(['description'=>$request->description]);
     }
 
     /**
@@ -86,6 +90,10 @@ class BookController extends Controller
      */
     public function destroy(Book $book)
     {
-        //
+        $b = Book::findOrFail($book->id);
+       
+        Book::destroy($b->id);
+
+        return response()->json($b);
     }
 }

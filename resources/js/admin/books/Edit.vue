@@ -2,17 +2,15 @@
     <div class="row">
         <div class="col-md-12">
             <!-- Button trigger modal -->
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" @click="showAddBookModal">
-                Ajouter
-            </button>
+           
 
             <!-- Modal -->
-            <div class="modal fade bd-example-modal-lg" id="addBookModal" tabindex="-1"
-                aria-labelledby="addBookModalLabel" aria-hidden="true">
+            <div class="modal fade bd-example-modal-lg" id="editBookModal" tabindex="-1"
+                aria-labelledby="editBookModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="addBookModalLabel">New book</h5>
+                            <h5 class="modal-title" id="editBookModalLabel">Edit book</h5>
                             <button type="button" class="btn-close" aria-label="Close" @click="closeAddBookModal"></button>
                         </div>
                         <div class="modal-body">
@@ -29,10 +27,10 @@
                                     <div class="col-md-8">
 
                                         <label for="title" class="form-label">Title</label>
-                                        <input type="text" class="form-control" id="title" v-model="title">
+                                        <input type="text" class="form-control" id="title" v-model="bookToEdit.title">
 
                                         <label for="title" class="form-label">Description</label>
-                                        <textarea class="form-control" col="5" v-model="description"></textarea>
+                                        <textarea class="form-control" col="5" v-model="bookToEdit.description"></textarea>
 
                                     </div>
                                 </form>
@@ -40,7 +38,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" @click="closeAddBookModal">Close</button>
-                            <button type="button" class="btn btn-primary" @click="addBook">Ajouter</button>
+                            <button type="button" class="btn btn-primary" @click="updateBook">Ajouter</button>
                         </div>
                     </div>
                 </div>
@@ -52,46 +50,19 @@
 </template>
 
 <script>
-import VueSweetalert2 from 'vue-sweetalert2';
 export default {
-    data() {
-        return {
-            title: '',
-            description: '',
-            cover: null,
-            books: '',
-            myModal: ''
-        }
-    },
+    props: ['bookToEdit'],
     methods: {
-        showAddBookModal() {
-            this.myModal = new bootstrap.Modal(document.getElementById('addBookModal'), {
-                backdrop: true
-            });
-            this.myModal.show()
-        },
-        closeAddBookModal() {
-            this.myModal.hide()
-        },
-        addBook(){
-            const data = new FormData()
-            data.append("title", this.title)
-            data.append("description", this.description)
-            axios.post('api/books/', data)
+        updateBook(){
+            axios.patch('api/books/'+this.bookToEdit.id, {title:this.bookToEdit.title, description: this.bookToEdit.description })
             .then((response) => {
-                this.$emit('book-added', response)
-                this.$Swal({
-                    icon: 'success',
-                    title: 'Oops...',
-                    text: 'Something went wrong!',
-                    })
-                this.myModal.hide();
+                this.$emit('book-updated', response)
                 })
             .catch((error) => console.log(error));
         },
     },
     mounted() {
-        console.log("Create Book Admin mounted.");
+        console.log("Edit Book Admin mounted.");
     },
 };
 </script>
