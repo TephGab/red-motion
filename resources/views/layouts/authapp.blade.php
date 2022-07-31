@@ -8,7 +8,7 @@
   <!-- CSRF Token -->
   <meta name="csrf-token" content="{{ csrf_token() }}">
 
-  <title>{{ config('app.name', 'Kenny Dorvilus') | Login }}</title>
+  <title>{{ config('app.name', 'Kenny Dorvilus') | 'Login' }}</title>
 
   <link rel="icon" type="image/icon" href="{{ asset('/img/logo2.png') }}">
 
