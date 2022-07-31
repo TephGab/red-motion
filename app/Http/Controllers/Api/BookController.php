@@ -37,16 +37,16 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
-        // $cover = request()->file('cover');
-        // $imageName = $cover->getClientOriginalName();
-        // $imageName = time().'_'.$imageName;
-        // $cover->move(public_path('/assets/img/books'), $imageName);
+        $cover = request()->file('cover');
+        $imageName = $cover->getClientOriginalName();
+        $imageName = time().'_'.$imageName;
+        $cover->move(public_path('/assets/img/books'), $imageName);
 
 
         $book = new Book;
         $book->title = $request->title;
         $book->description = $request->description;
-        // $book->cover = $imageName;
+        $book->cover = $imageName;
         // $book->author = $request->author;
         // $book->category = $request->category;
         $book->save();

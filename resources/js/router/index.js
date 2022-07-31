@@ -4,6 +4,8 @@ import { createRouter, createWebHistory } from "vue-router";
 import Index from '../pages/Index.vue';
 import About from '../components/About.vue';
 import Contact from '../components/Contact.vue';
+import Books from '../components/Books.vue';
+import Dkfondation from '../components/Dkfondation.vue';
 
 import Dashboard from '../admin/Dashboard.vue';
 import Create from '../admin/books/Create.vue';
@@ -22,6 +24,16 @@ const routes = [
         path: '/about',
         name: 'about',
         component: About
+    },
+    {
+        path: '/books',
+        name: 'books',
+        component: Books
+    },
+    {
+        path: '/dkfondation',
+        name: 'dkfondation',
+        component: Dkfondation
     },
     {
         path: '/contact',

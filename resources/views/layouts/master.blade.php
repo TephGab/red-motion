@@ -10,9 +10,11 @@
 
   <title>{{ config('app.name', 'Kenny Dorvilus') }} | Dashboard </title>
 
-  <link rel="icon" type="image/icon" href="{{ secure_asset('/img/logo2.png') }}">
+  <!-- <link rel="icon" type="image/icon" href="{{ secure_asset('/img/logo2.png') }}"> -->
+  <link rel="icon" type="image/icon" href="{{ asset('/img/logo2.png') }}">
 
-  <link rel="icon" href="{{ secure_asset('assets/img/logo/logo.png') }}" type="image/icon type">
+  <!-- <link rel="icon" href="{{ secure_asset('assets/img/logo/logo.png') }}" type="image/icon type"> -->
+  <link rel="icon" href="{{ asset('assets/img/logo/logo.png') }}" type="image/icon type">
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome Icons -->
@@ -23,7 +25,8 @@
   <link rel="stylesheet" href="dist/css/adminlte.min.css">
   <!-- Scripts -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" referrerpolicy="no-referrer"></script>
-  <script src="{{ secure_asset('js/app.js') }}" defer></script>
+  <!-- <script src="{{ secure_asset('js/app.js') }}" defer></script> -->
+  <script src="{{ asset('js/app.js') }}" defer></script>
  
 </head>
 

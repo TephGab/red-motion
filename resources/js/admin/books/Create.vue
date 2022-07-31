@@ -22,7 +22,10 @@
                                     <div class="col-md-4">
                                         <div>
                                             <label for="cover" class="form-label">Cover</label>
-                                            <input type="file" class="form-control" id="cover">
+                                           <div v-show="coverPreview">
+                                            <img :src="coverPreview" class="img-responsive"/>
+                                           </div>
+                                            <input type="file" class="form-control" @change="imageSelected">
                                         </div>
                                         <!-- <div id="cover" class="form-text">We'll never share your email with anyone else.</div> -->
                                     </div>
@@ -60,6 +63,8 @@ export default {
             description: '',
             cover: null,
             books: '',
+            cover: '',
+            coverPreview: '',
             myModal: ''
         }
     },
@@ -73,18 +78,40 @@ export default {
         closeAddBookModal() {
             this.myModal.hide()
         },
+           imageSelected(e){
+            this.cover = e.target.files[0];
+            let reader = new FileReader();
+            reader.readAsDataURL(this.cover);
+            reader.onload = e => {
+            this.coverPreview = e.target.result;
+               };
+        },
+            // getCover(e) {
+            // let fileReader = new FileReader();
+            // fileReader.readAsDataURL(e.target.files[0]);
+            // fileReader.onload = (e) => {
+            //     this.cover = e.target.result;
+            //     console.log(this.cover);
+            // };
+            // },
         addBook(){
             const data = new FormData()
             data.append("title", this.title)
             data.append("description", this.description)
+            data.append("cover", this.cover)
             axios.post('api/books/', data)
             .then((response) => {
                 this.$emit('book-added', response)
-                this.$Swal({
-                    icon: 'success',
-                    title: 'Oops...',
-                    text: 'Something went wrong!',
-                    })
+                 this.$swal({
+                text: 'Nouveau livre enregistré!',
+                toast: true,
+                position: 'top-right',
+                icon: 'success',
+                color: '#000',
+                padding: '0',
+                showConfirmButton: false,
+                timer: 2500
+                });
                 this.myModal.hide();
                 })
             .catch((error) => console.log(error));

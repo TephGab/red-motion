@@ -240,7 +240,7 @@
           <p>Les plus Telechargés</p>
         </div>
 
-        <div class="row" data-aos="fade-up" data-aos-delay="100">
+        <!-- <div class="row" data-aos="fade-up" data-aos-delay="100">
           <div class="col-lg-12 d-flex justify-content-center">
             <ul id="portfolio-flters">
               <li data-filter="*" class="filter-active">Tout</li>
@@ -249,10 +249,10 @@
               <li data-filter=".filter-web">autre</li>
             </ul>
           </div>
-        </div>
+        </div> -->
 
         <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
-          <div class="col-lg-4 col-md-6 portfolio-item filter-app" v-for="book in books" :key="book.id">
+          <div class="col-lg-4 col-md-6 portfolio-item filter-app" v-for="book in books.slice(0, 3)" :key="book.id">
             <div class="card" style="background: #0D0D0D;">
              <img :src="'assets/img/books/'+book.cover" class="card-img-top" alt="cover" />
               <!-- <img src="{{ asset('assets/img/books/'+book.cover}}" class="card-img-top" alt="..."> -->
@@ -266,7 +266,7 @@
           </div>
          
         </div>
-
+<router-link class="btn btn-block w-100" :to="{ name: 'books'}" style="border: 1px solid orange; color: #ffffff"> Voir tout les livres </router-link>
       </div>
     </section>
     <!-- ======= End Portfolio Section ======= -->
@@ -347,6 +347,23 @@
 
 <script>
 export default {
+    data() {
+    return {
+      books: ''
+    }
+  },
+  methods:{
+      readMore(data){
+       return data.substring(0, 110) + '...';
+    },
+  },
+    created() {
+    axios.get('api/books')
+      .then((response) => {
+        this.books = response.data.data;
+      })
+      .catch((error) => console.log(error));
+  },
     mounted() {
         console.log("Index mounted.");
     },

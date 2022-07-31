@@ -37,6 +37,7 @@
                 <thead class="thead-dark">
                   <tr>
                     <th scope="col">#</th>
+                     <th scope="col">Cover</th>
                     <th scope="col">Titre</th>
                     <th scope="col">Description</th>
                     <th scope="col">Actions</th>
@@ -45,16 +46,16 @@
                 <tbody>
                   <tr v-for="book in books" :key="book.id">
                     <th scope="row">{{ book.id }}</th>
+                    <td><img :src="'assets/img/books/'+ book.cover" class="img-responsive" style="width: 150px"/></td>
                     <td>{{ book.title }}</td>
                     <td>{{ book.description }}</td>
                     <td>
-                      <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                        @click="showEditBookModal(book.id)">
-                        Modifier
+                      <button type="button" class="btn btn-primary mr-1" data-bs-toggle="modal"
+                        @click="showEditBookModal(book.id)" title="Modifier">
+                       <i class="fas fa-edit"></i>
                       </button>
-                      <button type="button" class="btn btn-danger"
-                        @click="deleteBook(book.id)">
-                        Supprimer
+                      <button type="button" class="btn btn-danger" @click="deleteBook(book.id)" title="Supprimer">
+                       <i class="fa fa-trash" aria-hidden="true"></i>
                       </button>
                     </td>
                     <edit-book v-bind:bookToEdit="bookToEdit" @book-updated="refresh"></edit-book>
@@ -109,19 +110,35 @@ export default {
           this.books = response.data.data;
         })
         .catch((error) => console.log(error));
-      this.closeAddBookModal();
+      // this.closeAddBookModal();
     },
 
-    deleteBook(id){
-      var fac;
-        axios.delete('api/books/' + id)
-        .then((response) => {
-          this.refresh(fac);
-        })
-        .catch((error) => console.log(error));
+    deleteBook(id) {
+      this.$swal({
+        title: 'Etes vous sure de vouloir supprimer?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Oui!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          var fac;
+          axios.delete('api/books/' + id)
+            .then((response) => {
+              this.refresh(fac);
+            })
+            .catch((error) => console.log(error));
+          this.$swal(
+            'Supprimé!',
+            'Livre supprimé.',
+            'success'
+          )
+        }
+      })
     },
-    search(){
-       axios.get('api/books/' + this.q)
+    search() {
+      axios.get('api/books/' + this.q)
         .then((response) => {
           this.books = response.data;
         })
