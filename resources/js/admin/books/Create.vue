@@ -18,12 +18,12 @@
                         <div class="modal-body">
                             <div class="container-fluid">
 
-                                <form class="row">
+                                <form class="row" enctype="multipart/form-data">
                                     <div class="col-md-4">
                                         <div>
                                             <label for="cover" class="form-label">Cover</label>
                                            <div v-show="coverPreview">
-                                            <img :src="coverPreview" class="img-responsive"/>
+                                            <img :src="coverPreview" class="img-responsive" style="width: 100%" />
                                            </div>
                                             <input type="file" class="form-control" @change="imageSelected">
                                         </div>
@@ -86,14 +86,7 @@ export default {
             this.coverPreview = e.target.result;
                };
         },
-            // getCover(e) {
-            // let fileReader = new FileReader();
-            // fileReader.readAsDataURL(e.target.files[0]);
-            // fileReader.onload = (e) => {
-            //     this.cover = e.target.result;
-            //     console.log(this.cover);
-            // };
-            // },
+
         addBook(){
             const data = new FormData()
             data.append("title", this.title)

@@ -10,9 +10,6 @@
 
   <title>{{ config('app.name', 'Kenny Dorvilus') }} | Dashboard </title>
 
-  <!-- <link rel="icon" type="image/icon" href="{{ secure_asset('/img/logo2.png') }}"> -->
-  <link rel="icon" type="image/icon" href="{{ asset('/img/logo2.png') }}">
-
   <!-- <link rel="icon" href="{{ secure_asset('assets/img/logo/logo.png') }}" type="image/icon type"> -->
   <link rel="icon" href="{{ asset('assets/img/logo/logo.png') }}" type="image/icon type">
   <!-- Google Font: Source Sans Pro -->
@@ -50,7 +47,7 @@
       <!-- Right navbar links -->
       <ul class="navbar-nav ml-auto">
         <!-- Navbar Search -->
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <a class="nav-link" data-widget="navbar-search" href="#" role="button">
             <i class="fas fa-search"></i>
           </a>
@@ -69,7 +66,7 @@
               </div>
             </form>
           </div>
-        </li>
+        </li> -->
 
         <li class="nav-item">
           <a class="nav-link" data-widget="fullscreen" href="#" role="button">
@@ -104,10 +101,10 @@
     <!-- Main Sidebar Container -->
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
       <!-- Brand Logo -->
-      <a href="index3.html" class="brand-link">
-        <!-- <img src="{{ secure_asset('/img/logo2.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8"> -->
+      <router-link :to="{ name: 'dashboard'}" class="brand-link">
+        <img src="{{ asset('assets/img/logo/logo.png') }}" alt="Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
         <span class="brand-text font-weight-light">{{ config('app.name', 'Kenny Dorvilus') }}</span>
-      </a>
+      </router-link>
 
       <!-- Sidebar -->
       <div class="sidebar">

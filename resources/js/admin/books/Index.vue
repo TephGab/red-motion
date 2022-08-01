@@ -33,29 +33,30 @@
         <div class="card-body">
           <div class="row">
             <div class="col-md-12">
-              <table class="table">
-                <thead class="thead-dark">
+              <table class="table" style="width:100%">
+                <thead class="thead-dark text-center">
                   <tr>
-                    <th scope="col">#</th>
-                     <th scope="col">Cover</th>
-                    <th scope="col">Titre</th>
-                    <th scope="col">Description</th>
-                    <th scope="col">Actions</th>
+                    <th scope="col" style="width:5%">#</th>
+                    <th scope="col" style="width:15%">Cover</th>
+                    <th scope="col" style="width:35%">Titre</th>
+                    <th scope="col" style="width:35%">Description</th>
+                    <th scope="col" style="width:10%">Actions</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr v-for="book in books" :key="book.id">
-                    <th scope="row">{{ book.id }}</th>
-                    <td><img :src="'assets/img/books/'+ book.cover" class="img-responsive" style="width: 150px"/></td>
-                    <td>{{ book.title }}</td>
-                    <td>{{ book.description }}</td>
-                    <td>
-                      <button type="button" class="btn btn-primary mr-1" data-bs-toggle="modal"
-                        @click="showEditBookModal(book.id)" title="Modifier">
-                       <i class="fas fa-edit"></i>
+                  <tr v-for="book in books.data" :key="book.id" style="text-align: left">
+                    <th scope="row" style="width:5%">{{ book.id }}</th>
+                    <td style="width:15%"><img :src="'assets/img/books/' + book.cover" class="img-responsive"
+                        style="width: 100%" /></td>
+                    <td style="width:35%; color: #FFC55C; font-weight: bold;">{{ book.title }}</td>
+                    <td style="width:35%">{{ book.description }}</td>
+                    <td style="width:10%;">
+                      <button type="button" class="btn" data-bs-toggle="modal" @click="showEditBookModal(book.id)"
+                        title="Modifier">
+                        <i class="fas fa-edit text-success"></i>
                       </button>
-                      <button type="button" class="btn btn-danger" @click="deleteBook(book.id)" title="Supprimer">
-                       <i class="fa fa-trash" aria-hidden="true"></i>
+                      <button type="button" class="btn" @click="deleteBook(book.id)" title="Supprimer">
+                        <i class="fa fa-trash text-danger" aria-hidden="true"></i>
                       </button>
                     </td>
                     <edit-book v-bind:bookToEdit="bookToEdit" @book-updated="refresh"></edit-book>
@@ -69,6 +70,7 @@
         </div>
         <!-- ./card-body -->
       </div>
+      <Pagination :data="books" @pagination-change-page="getResults" />
       <!-- /.card -->
     </div>
     <!-- /.col -->
@@ -80,7 +82,7 @@
 export default {
   data() {
     return {
-      books: '',
+      books: {},
       bookToEdit: '',
       q: null
     }
@@ -90,6 +92,7 @@ export default {
       axios.get('api/books/' + id)
         .then((response) => {
           this.bookToEdit = response.data;
+          console.log(response.data);
         })
         .catch((error) => console.log(error));
 
@@ -107,10 +110,10 @@ export default {
     refresh(books) {
       axios.get('api/books')
         .then((response) => {
-          this.books = response.data.data;
+          this.books = response.data;
         })
         .catch((error) => console.log(error));
-      // this.closeAddBookModal();
+       this.closeAddBookModal();
     },
 
     deleteBook(id) {
@@ -129,14 +132,11 @@ export default {
               this.refresh(fac);
             })
             .catch((error) => console.log(error));
-          this.$swal(
-            'Supprimé!',
-            'Livre supprimé.',
-            'success'
-          )
+          this.$swal('Supprimé!','Livre supprimé.','success')
         }
       })
     },
+
     search() {
       axios.get('api/books/' + this.q)
         .then((response) => {
@@ -144,15 +144,23 @@ export default {
         })
         .catch((error) => console.log(error));
     },
+
+    getResults(page = 1) {
+      axios.get('api/books?page=' + page)
+        .then(response => {
+          this.books = response.data;
+        });
+    },
   },
 
   created() {
     axios.get('api/books')
       .then((response) => {
-        this.books = response.data.data;
+        this.books = response.data;
       })
       .catch((error) => console.log(error));
   },
+
   mounted() {
     console.log("Books Admin mounted.");
   },

@@ -18,12 +18,10 @@ class BookController extends Controller
     {
         if(request('q') !== null){
             $books['data'] = Book::where('title', 'like', '%' . request('q') . '%')->orderBy('created_at', 'DESC')->get();
-
             return response()->json($books);
         }
         else{
-            $books['data'] = Book::orderBy('created_at', 'DESC')->get();
-
+            $books = Book::orderBy('created_at', 'DESC')->paginate(5);
             return response()->json($books);
         //    return BookResource::collection(Book::all());
         }
@@ -78,8 +76,14 @@ class BookController extends Controller
     {
         $b = Book::findOrFail($book->id);
 
+        // $cover = request()->file('cover');
+        // $imageName = $cover->getClientOriginalName();
+        // $imageName = time().'_'.$imageName;
+        // $cover->move(public_path('/assets/img/books'), $imageName);
+
         $b->update(['title'=>$request->title]);
         $b->update(['description'=>$request->description]);
+        // $b->update(['cover'=>$imageName]);
     }
 
     /**

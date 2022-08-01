@@ -23212,14 +23212,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         _this.coverPreview = e.target.result;
       };
     },
-    // getCover(e) {
-    // let fileReader = new FileReader();
-    // fileReader.readAsDataURL(e.target.files[0]);
-    // fileReader.onload = (e) => {
-    //     this.cover = e.target.result;
-    //     console.log(this.cover);
-    // };
-    // },
     addBook: function addBook() {
       var _this2 = this;
 
@@ -23267,15 +23259,44 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ['bookToEdit'],
+  data: function data() {
+    return {
+      cover: null,
+      coverPreview: ''
+    };
+  },
   methods: {
-    updateBook: function updateBook() {
+    imageSelected: function imageSelected(e) {
       var _this = this;
+
+      this.cover = e.target.files[0];
+      var reader = new FileReader();
+      reader.readAsDataURL(this.cover);
+
+      reader.onload = function (e) {
+        _this.coverPreview = e.target.result;
+      };
+    },
+    updateBook: function updateBook() {
+      var _this2 = this;
 
       axios.patch('api/books/' + this.bookToEdit.id, {
         title: this.bookToEdit.title,
-        description: this.bookToEdit.description
+        description: this.bookToEdit.description,
+        cover: this.cover
       }).then(function (response) {
-        _this.$emit('book-updated', response);
+        _this2.$emit('book-updated', response);
+
+        _this2.$swal({
+          text: 'Modifications effectué!',
+          toast: true,
+          position: 'top-right',
+          icon: 'success',
+          color: '#000',
+          padding: '0',
+          showConfirmButton: false,
+          timer: 2500
+        });
       })["catch"](function (error) {
         return console.log(error);
       });
@@ -23302,7 +23323,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
-      books: '',
+      books: {},
       bookToEdit: '',
       q: null
     };
@@ -23313,6 +23334,7 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.get('api/books/' + id).then(function (response) {
         _this.bookToEdit = response.data;
+        console.log(response.data);
       })["catch"](function (error) {
         return console.log(error);
       });
@@ -23328,10 +23350,11 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       axios.get('api/books').then(function (response) {
-        _this2.books = response.data.data;
+        _this2.books = response.data;
       })["catch"](function (error) {
         return console.log(error);
-      }); // this.closeAddBookModal();
+      });
+      this.closeAddBookModal();
     },
     deleteBook: function deleteBook(id) {
       var _this3 = this;
@@ -23364,13 +23387,21 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (error) {
         return console.log(error);
       });
+    },
+    getResults: function getResults() {
+      var _this5 = this;
+
+      var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
+      axios.get('api/books?page=' + page).then(function (response) {
+        _this5.books = response.data;
+      });
     }
   },
   created: function created() {
-    var _this5 = this;
+    var _this6 = this;
 
     axios.get('api/books').then(function (response) {
-      _this5.books = response.data.data;
+      _this6.books = response.data;
     })["catch"](function (error) {
       return console.log(error);
     });
@@ -23415,19 +23446,27 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
-      books: ''
+      books: {}
     };
   },
   methods: {
     readMore: function readMore(data) {
       return data.substring(0, 110) + '...';
+    },
+    getResults: function getResults() {
+      var _this = this;
+
+      var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
+      axios.get('api/books?page=' + page).then(function (response) {
+        _this.books = response.data;
+      });
     }
   },
   created: function created() {
-    var _this = this;
+    var _this2 = this;
 
     axios.get('api/books').then(function (response) {
-      _this.books = response.data.data;
+      _this2.books = response.data;
     })["catch"](function (error) {
       return console.log(error);
     });
@@ -23930,7 +23969,8 @@ var _hoisted_9 = {
   "class": "container-fluid"
 };
 var _hoisted_10 = {
-  "class": "row"
+  "class": "row",
+  enctype: "multipart/form-data"
 };
 var _hoisted_11 = {
   "class": "col-md-4"
@@ -23982,7 +24022,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     })
   })]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [_hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
     src: $data.coverPreview,
-    "class": "img-responsive"
+    "class": "img-responsive",
+    style: {
+      "width": "100%"
+    }
   }, null, 8
   /* PROPS */
   , _hoisted_13)], 512
@@ -24081,41 +24124,47 @@ var _hoisted_9 = {
   "class": "container-fluid"
 };
 var _hoisted_10 = {
-  "class": "row"
+  "class": "row",
+  enctype: "multipart/form-data"
+};
+var _hoisted_11 = {
+  "class": "col-md-4"
 };
 
-var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "col-md-4"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "for": "cover",
   "class": "form-label"
-}, "Cover"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
-  type: "file",
-  "class": "form-control",
-  id: "cover"
-})]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div id=\"cover\" class=\"form-text\">We'll never share your email with anyone else.</div> ")], -1
+}, "Cover", -1
 /* HOISTED */
 );
 
-var _hoisted_12 = {
+var _hoisted_13 = {
+  key: 0
+};
+var _hoisted_14 = ["src"];
+var _hoisted_15 = {
+  key: 1
+};
+var _hoisted_16 = ["src"];
+var _hoisted_17 = {
   "class": "col-md-8"
 };
 
-var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+var _hoisted_18 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "for": "title",
   "class": "form-label"
 }, "Title", -1
 /* HOISTED */
 );
 
-var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+var _hoisted_19 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "for": "title",
   "class": "form-label"
 }, "Description", -1
 /* HOISTED */
 );
 
-var _hoisted_15 = {
+var _hoisted_20 = {
   "class": "modal-footer"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
@@ -24126,36 +24175,59 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     onClick: _cache[0] || (_cache[0] = function () {
       return _ctx.closeAddBookModal && _ctx.closeAddBookModal.apply(_ctx, arguments);
     })
-  })]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", _hoisted_10, [_hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [_hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  })]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [_hoisted_12, $data.coverPreview ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+    src: $data.coverPreview,
+    "class": "img-responsive",
+    style: {
+      "width": "100%"
+    }
+  }, null, 8
+  /* PROPS */
+  , _hoisted_14)])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+    src: 'assets/img/books/' + $props.bookToEdit.cover,
+    "class": "img-responsive",
+    style: {
+      "width": "100%"
+    }
+  }, null, 8
+  /* PROPS */
+  , _hoisted_16)])), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+    type: "file",
+    "class": "form-control",
+    onChange: _cache[1] || (_cache[1] = function () {
+      return $options.imageSelected && $options.imageSelected.apply($options, arguments);
+    })
+  }, null, 32
+  /* HYDRATE_EVENTS */
+  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div id=\"cover\" class=\"form-text\">We'll never share your email with anyone else.</div> ")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_17, [_hoisted_18, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "text",
     "class": "form-control",
     id: "title",
-    "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
+    "onUpdate:modelValue": _cache[2] || (_cache[2] = function ($event) {
       return $props.bookToEdit.title = $event;
     })
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $props.bookToEdit.title]]), _hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("textarea", {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $props.bookToEdit.title]]), _hoisted_19, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("textarea", {
     "class": "form-control",
-    col: "5",
-    "onUpdate:modelValue": _cache[2] || (_cache[2] = function ($event) {
+    "onUpdate:modelValue": _cache[3] || (_cache[3] = function ($event) {
       return $props.bookToEdit.description = $event;
     })
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $props.bookToEdit.description]])])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $props.bookToEdit.description]])])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_20, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     type: "button",
     "class": "btn btn-secondary",
-    onClick: _cache[3] || (_cache[3] = function () {
+    onClick: _cache[4] || (_cache[4] = function () {
       return _ctx.closeAddBookModal && _ctx.closeAddBookModal.apply(_ctx, arguments);
     })
   }, "Close"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     type: "button",
     "class": "btn btn-primary",
-    onClick: _cache[4] || (_cache[4] = function () {
+    onClick: _cache[5] || (_cache[5] = function () {
       return $options.updateBook && $options.updateBook.apply($options, arguments);
     })
-  }, "Ajouter")])])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" /.col ")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" /.row ")], 2112
+  }, "Modifier")])])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" /.col ")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" /.row ")], 2112
   /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */
   );
 }
@@ -24197,52 +24269,97 @@ var _hoisted_7 = {
   "class": "col-md-12"
 };
 var _hoisted_8 = {
-  "class": "table"
+  "class": "table",
+  style: {
+    "width": "100%"
+  }
 };
 
 var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("thead", {
-  "class": "thead-dark"
+  "class": "thead-dark text-center"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", {
-  scope: "col"
+  scope: "col",
+  style: {
+    "width": "5%"
+  }
 }, "#"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", {
-  scope: "col"
+  scope: "col",
+  style: {
+    "width": "15%"
+  }
 }, "Cover"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", {
-  scope: "col"
+  scope: "col",
+  style: {
+    "width": "35%"
+  }
 }, "Titre"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", {
-  scope: "col"
+  scope: "col",
+  style: {
+    "width": "35%"
+  }
 }, "Description"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", {
-  scope: "col"
+  scope: "col",
+  style: {
+    "width": "10%"
+  }
 }, "Actions")])], -1
 /* HOISTED */
 );
 
 var _hoisted_10 = {
-  scope: "row"
+  scope: "row",
+  style: {
+    "width": "5%"
+  }
 };
-var _hoisted_11 = ["src"];
-var _hoisted_12 = ["onClick"];
+var _hoisted_11 = {
+  style: {
+    "width": "15%"
+  }
+};
+var _hoisted_12 = ["src"];
+var _hoisted_13 = {
+  style: {
+    "width": "35%",
+    "color": "#FFC55C",
+    "font-weight": "bold"
+  }
+};
+var _hoisted_14 = {
+  style: {
+    "width": "35%"
+  }
+};
+var _hoisted_15 = {
+  style: {
+    "width": "10%"
+  }
+};
+var _hoisted_16 = ["onClick"];
 
-var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
-  "class": "fas fa-edit"
+var _hoisted_17 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
+  "class": "fas fa-edit text-success"
 }, null, -1
 /* HOISTED */
 );
 
-var _hoisted_14 = [_hoisted_13];
-var _hoisted_15 = ["onClick"];
+var _hoisted_18 = [_hoisted_17];
+var _hoisted_19 = ["onClick"];
 
-var _hoisted_16 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
-  "class": "fa fa-trash",
+var _hoisted_20 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
+  "class": "fa fa-trash text-danger",
   "aria-hidden": "true"
 }, null, -1
 /* HOISTED */
 );
 
-var _hoisted_17 = [_hoisted_16];
+var _hoisted_21 = [_hoisted_20];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_add_book = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("add-book");
 
   var _component_edit_book = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("edit-book");
+
+  var _component_Pagination = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Pagination");
 
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <button class=\"btn btn-success\"> Add book </button> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_add_book, {
     onBookAdded: $options.refresh
@@ -24260,43 +24377,46 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     })
   }, null, 544
   /* HYDRATE_EVENTS, NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.q]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" /.card-header "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("table", _hoisted_8, [_hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tbody", null, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.books, function (book) {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.q]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" /.card-header "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("table", _hoisted_8, [_hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tbody", null, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.books.data, function (book) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("tr", {
-      key: book.id
+      key: book.id,
+      style: {
+        "text-align": "left"
+      }
     }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", _hoisted_10, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(book.id), 1
     /* TEXT */
-    ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+    ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
       src: 'assets/img/books/' + book.cover,
       "class": "img-responsive",
       style: {
-        "width": "150px"
+        "width": "100%"
       }
     }, null, 8
     /* PROPS */
-    , _hoisted_11)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(book.title), 1
+    , _hoisted_12)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(book.title), 1
     /* TEXT */
-    ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(book.description), 1
+    ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(book.description), 1
     /* TEXT */
-    ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+    ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
       type: "button",
-      "class": "btn btn-primary mr-1",
+      "class": "btn",
       "data-bs-toggle": "modal",
       onClick: function onClick($event) {
         return $options.showEditBookModal(book.id);
       },
       title: "Modifier"
-    }, _hoisted_14, 8
+    }, _hoisted_18, 8
     /* PROPS */
-    , _hoisted_12), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+    , _hoisted_16), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
       type: "button",
-      "class": "btn btn-danger",
+      "class": "btn",
       onClick: function onClick($event) {
         return $options.deleteBook(book.id);
       },
       title: "Supprimer"
-    }, _hoisted_17, 8
+    }, _hoisted_21, 8
     /* PROPS */
-    , _hoisted_15)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_edit_book, {
+    , _hoisted_19)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_edit_book, {
       bookToEdit: $data.bookToEdit,
       onBookUpdated: $options.refresh
     }, null, 8
@@ -24304,7 +24424,12 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     , ["bookToEdit", "onBookUpdated"])]);
   }), 128
   /* KEYED_FRAGMENT */
-  ))])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" /.col ")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" /.row ")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ./card-body ")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" /.card ")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" /.col ")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" /.row ")], 2112
+  ))])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" /.col ")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" /.row ")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ./card-body ")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Pagination, {
+    data: $data.books,
+    onPaginationChangePage: $options.getResults
+  }, null, 8
+  /* PROPS */
+  , ["data", "onPaginationChangePage"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" /.card ")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" /.col ")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" /.row ")], 2112
   /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */
   );
 }
@@ -24355,25 +24480,29 @@ var _hoisted_2 = {
   "data-aos": "fade-up"
 };
 
-var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"section-title\"><h2>Mes livvres</h2><!-- &lt;p&gt;Les plus Telechargés&lt;/p&gt; --></div><div class=\"row\" data-aos=\"fade-up\" data-aos-delay=\"100\"><div class=\"col-lg-12 d-flex justify-content-center\"><ul id=\"portfolio-flters\"><li data-filter=\"*\" class=\"filter-active\">Tout</li><li data-filter=\".filter-app\">Sotériologie</li><li data-filter=\".filter-card\">Prophetique</li><li data-filter=\".filter-web\">autre</li></ul></div></div>", 2);
+var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  "class": "section-title"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", null, "Mes livvres"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <p>Les plus Telechargés</p> ")], -1
+/* HOISTED */
+);
 
-var _hoisted_5 = {
+var _hoisted_4 = {
   "class": "row portfolio-container",
   "data-aos": "fade-up",
   "data-aos-delay": "200"
 };
-var _hoisted_6 = {
+var _hoisted_5 = {
   "class": "card",
   style: {
     "background": "#0D0D0D"
   }
 };
-var _hoisted_7 = ["src"];
-var _hoisted_8 = {
+var _hoisted_6 = ["src"];
+var _hoisted_7 = {
   "class": "card-body"
 };
 
-var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
   "class": "small text-muted date_plulication"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
   "class": "fas fa-clock"
@@ -24381,11 +24510,11 @@ var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 /* HOISTED */
 );
 
-var _hoisted_10 = {
+var _hoisted_9 = {
   "class": "card-title"
 };
-var _hoisted_11 = ["textContent"];
-var _hoisted_12 = {
+var _hoisted_10 = ["textContent"];
+var _hoisted_11 = {
   "class": "card-text",
   style: {
     "font-size": "13px",
@@ -24393,34 +24522,41 @@ var _hoisted_12 = {
   }
 };
 
-var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
   "class": "btn btn-warning btn-sm"
 }, "Lire la suite", -1
 /* HOISTED */
 );
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ======= Portfolio Section ======= "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("section", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [_hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.books, function (book) {
+  var _component_Pagination = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Pagination");
+
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ======= Portfolio Section ======= "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("section", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [_hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div class=\"row\" data-aos=\"fade-up\" data-aos-delay=\"100\">\r\n          <div class=\"col-lg-12 d-flex justify-content-center\">\r\n            <ul id=\"portfolio-flters\">\r\n              <li data-filter=\"*\" class=\"filter-active\">Tout</li>\r\n              <li data-filter=\".filter-app\">Sotériologie</li>\r\n              <li data-filter=\".filter-card\">Prophetique</li>\r\n              <li data-filter=\".filter-web\">autre</li>\r\n            </ul>\r\n          </div>\r\n        </div> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.books.data, function (book) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
-      "class": "col-lg-4 col-md-6 portfolio-item filter-app",
+      "class": "col-lg-3 col-md-3 portfolio-item filter-app",
       key: book.id
-    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
       src: 'assets/img/books/' + book.cover,
       "class": "card-img-top",
       alt: "cover"
     }, null, 8
     /* PROPS */
-    , _hoisted_7), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <img src=\"{{ asset('assets/img/books/'+book.cover}}\" class=\"card-img-top\" alt=\"...\"> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [_hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h6", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+    , _hoisted_6), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [_hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h6", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
       href: "",
       textContent: (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(book.title)
     }, null, 8
     /* PROPS */
-    , _hoisted_11)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.readMore(book.description)), 1
+    , _hoisted_10)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.readMore(book.description)), 1
     /* TEXT */
-    ), _hoisted_13])])]);
+    ), _hoisted_12])])]);
   }), 128
   /* KEYED_FRAGMENT */
-  ))])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ======= End Portfolio Section ======= ")]);
+  ))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Pagination, {
+    data: $data.books,
+    onPaginationChangePage: $options.getResults
+  }, null, 8
+  /* PROPS */
+  , ["data", "onPaginationChangePage"])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ======= End Portfolio Section ======= ")]);
 }
 
 /***/ }),
@@ -24576,37 +24712,44 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
-
-var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("section", {
+var _hoisted_1 = {
   id: "hero"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+};
+var _hoisted_2 = {
   "class": "hero-container w-50",
   "data-aos": "fade-up",
   "data-aos-delay": "150"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", null, "KENNY DORVILUS"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", null, "Coach, motivateur, mentor, enseignant de la parole de Dieu, voix prophétique pour les nations, revivaliste et Ecrivain"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "d-flex"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
-  href: "#about",
-  "class": "btn-get-started scrollto"
-}, "Voir livre"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <a href=\"https://www.youtube.com/watch?v=jDDaplaOz7Q\" class=\"glightbox btn-watch-video\"><i class=\"bi bi-play-circle\"></i><span>Watch Video</span></a> ")])])], -1
+};
+
+var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", null, "KENNY DORVILUS", -1
 /* HOISTED */
 );
 
-var _hoisted_2 = {
+var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", null, "Coach, motivateur, mentor, enseignant de la parole de Dieu, voix prophétique pour les nations, revivaliste et Ecrivain", -1
+/* HOISTED */
+);
+
+var _hoisted_5 = {
+  "class": "d-flex"
+};
+
+var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Voir livre");
+
+var _hoisted_7 = {
   id: "about",
   ref: "about",
   "class": "about"
 };
-var _hoisted_3 = {
+var _hoisted_8 = {
   "class": "container",
   "data-aos": "fade-up"
 };
-var _hoisted_4 = {
+var _hoisted_9 = {
   "class": "row",
   id: "about"
 };
 
-var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "col-lg-6 video-box align-self-baseline",
   "data-aos": "zoom-in",
   "data-aos-delay": "100"
@@ -24618,40 +24761,40 @@ var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 /* HOISTED */
 );
 
-var _hoisted_6 = {
+var _hoisted_11 = {
   "class": "col-lg-6 pt-3 pt-lg-0 content"
 };
 
-var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<h3>Qui est Kenny?.</h3><p class=\"fst-italic\"> Le Prophète Kenny est originaire du département de nord-ouest plus particulièrement de l’île de La Tortue. Benjamin d’une famille de cinq enfants. Il a fait des études de théologie au Royaume Haïti Collège Biblique (RHCB) et de génie informatique à l’Université INUKA. Kenny DORVILUS sert sa communauté et le Royaume de Dieu à bien des égards il est : coach, motivateur, mentor, enseignant de la parole de Dieu, voix prophétique pour les nations et revivaliste. Il est aussi auteur de plusieurs ouvrages dont : <br></p><ul><li><i class=\"bx bx-check-double\"></i> 300 citations de sagesse</li><li><i class=\"bx bx-check-double\"></i> 95 Révélations sur le mystère de la prière en Esprit </li><li><i class=\"bx bx-check-double\"></i> Haïti une nouvelle génération une nouvelle vague du réveil</li><li><i class=\"bx bx-check-double\"></i> 7 vérités irréfutables de la foi </li><li><i class=\"bx bx-check-double\"></i> Comment conserver et faire grandir son onction </li></ul><p> C’est un patriote dans l’âme. Et par-dessus tout un Chrétien soupirant et combattant encore jusqu’au retour son Seigneur Jésus-Christ. Il est le fondateur de DK FONDATION et également membre de la mission BARUC. </p>", 4);
+var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<h3>Qui est Kenny?.</h3><p class=\"fst-italic\"> Le Prophète Kenny est originaire du département de nord-ouest plus particulièrement de l’île de La Tortue. Benjamin d’une famille de cinq enfants. Il a fait des études de théologie au Royaume Haïti Collège Biblique (RHCB) et de génie informatique à l’Université INUKA. Kenny DORVILUS sert sa communauté et le Royaume de Dieu à bien des égards il est : coach, motivateur, mentor, enseignant de la parole de Dieu, voix prophétique pour les nations et revivaliste. Il est aussi auteur de plusieurs ouvrages dont : <br></p><ul><li><i class=\"bx bx-check-double\"></i> 300 citations de sagesse</li><li><i class=\"bx bx-check-double\"></i> 95 Révélations sur le mystère de la prière en Esprit </li><li><i class=\"bx bx-check-double\"></i> Haïti une nouvelle génération une nouvelle vague du réveil</li><li><i class=\"bx bx-check-double\"></i> 7 vérités irréfutables de la foi </li><li><i class=\"bx bx-check-double\"></i> Comment conserver et faire grandir son onction </li></ul><p> C’est un patriote dans l’âme. Et par-dessus tout un Chrétien soupirant et combattant encore jusqu’au retour son Seigneur Jésus-Christ. Il est le fondateur de DK FONDATION et également membre de la mission BARUC. </p>", 4);
 
-var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" En savoir plus sur Kenny ");
+var _hoisted_16 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" En savoir plus sur Kenny ");
 
-var _hoisted_12 = {
+var _hoisted_17 = {
   id: "features",
   "class": "features"
 };
-var _hoisted_13 = {
+var _hoisted_18 = {
   "class": "container",
   "data-aos": "fade-up"
 };
-var _hoisted_14 = {
+var _hoisted_19 = {
   "class": "tab-content"
 };
-var _hoisted_15 = {
+var _hoisted_20 = {
   "class": "tab-pane active show",
   id: "tab-1"
 };
-var _hoisted_16 = {
+var _hoisted_21 = {
   "class": "row"
 };
-var _hoisted_17 = {
+var _hoisted_22 = {
   "class": "col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0",
   style: {
     "color": "#585A5C"
   }
 };
 
-var _hoisted_18 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", {
+var _hoisted_23 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", {
   style: {
     "color": "orange"
   }
@@ -24659,19 +24802,19 @@ var _hoisted_18 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 /* HOISTED */
 );
 
-var _hoisted_19 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
+var _hoisted_24 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
   "class": "fst-italic"
 }, " DK FONDATION est une fondation fondée par Kenny Dorvilus, située sur l’île de la tortue Nord-Ouest d’Haïti, elle a pour but d’aider les enfants démunis dans l’île. Par rapport à la situation actuelle du pays, l’avenir du pays repose sur les enfants. Pour que les enfants puissent assumer cette charge, il faudrait qu’une chose, l’éducation tout comme Nelson Mandela a dit : l’éducation est l’arme la plus puissante qu’on puisse utiliser pour changer le monde. ", -1
 /* HOISTED */
 );
 
-var _hoisted_20 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, " donc DK FONDATION met l’accent sur l’éducation parce qu’il pense qu’avec ce dernier, la société pourra s’améliorer. En dépit de tous les phénomènes qui se passent en Haïti, le banditisme, le kidnapping, il y a une catégorie de personnes qui croit qu’Haïti peut franchir une autre porte, c’est en cette raison que Kenny Dorvilus s’est donné lui-même et avec le peu qu’il a pour qu’il coopère dans le progrès social et éducatif d’Haïti. ", -1
+var _hoisted_25 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, " donc DK FONDATION met l’accent sur l’éducation parce qu’il pense qu’avec ce dernier, la société pourra s’améliorer. En dépit de tous les phénomènes qui se passent en Haïti, le banditisme, le kidnapping, il y a une catégorie de personnes qui croit qu’Haïti peut franchir une autre porte, c’est en cette raison que Kenny Dorvilus s’est donné lui-même et avec le peu qu’il a pour qu’il coopère dans le progrès social et éducatif d’Haïti. ", -1
 /* HOISTED */
 );
 
-var _hoisted_21 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" En savoir plus ");
+var _hoisted_26 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" En savoir plus ");
 
-var _hoisted_22 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_27 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "col-lg-6 order-1 order-lg-2 text-center"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
   src: "assets/img/baruc.png",
@@ -24681,38 +24824,38 @@ var _hoisted_22 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 /* HOISTED */
 );
 
-var _hoisted_23 = {
+var _hoisted_28 = {
   id: "portfolio",
   "class": "portfolio"
 };
-var _hoisted_24 = {
+var _hoisted_29 = {
   "class": "container",
   "data-aos": "fade-up"
 };
 
-var _hoisted_25 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_30 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "section-title"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", null, "Quelque livvres"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "Les plus Telechargés")], -1
 /* HOISTED */
 );
 
-var _hoisted_26 = {
+var _hoisted_31 = {
   "class": "row portfolio-container",
   "data-aos": "fade-up",
   "data-aos-delay": "200"
 };
-var _hoisted_27 = {
+var _hoisted_32 = {
   "class": "card",
   style: {
     "background": "#0D0D0D"
   }
 };
-var _hoisted_28 = ["src"];
-var _hoisted_29 = {
+var _hoisted_33 = ["src"];
+var _hoisted_34 = {
   "class": "card-body"
 };
 
-var _hoisted_30 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+var _hoisted_35 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
   "class": "small text-muted date_plulication"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
   "class": "fas fa-clock"
@@ -24720,11 +24863,11 @@ var _hoisted_30 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 /* HOISTED */
 );
 
-var _hoisted_31 = {
+var _hoisted_36 = {
   "class": "card-title"
 };
-var _hoisted_32 = ["textContent"];
-var _hoisted_33 = {
+var _hoisted_37 = ["textContent"];
+var _hoisted_38 = {
   "class": "card-text",
   style: {
     "font-size": "13px",
@@ -24732,21 +24875,21 @@ var _hoisted_33 = {
   }
 };
 
-var _hoisted_34 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+var _hoisted_39 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
   "class": "btn btn-warning btn-sm"
 }, "Lire la suite", -1
 /* HOISTED */
 );
 
-var _hoisted_35 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Voir tout les livres ");
+var _hoisted_40 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Voir tout les livres ");
 
-var _hoisted_36 = {
+var _hoisted_41 = {
   id: "contact",
   ref: "contact",
   "class": "contact"
 };
 
-var _hoisted_37 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_42 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "container",
   "data-aos": "fade-up",
   style: {
@@ -24839,11 +24982,23 @@ var _hoisted_37 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 /* HOISTED */
 );
 
-var _hoisted_38 = [_hoisted_37];
+var _hoisted_43 = [_hoisted_42];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_router_link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("router-link");
 
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ======= Hero Section ======= "), _hoisted_1, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End Hero "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ======= About Section ======= "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("section", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div class=\"row justify-content-end\">\r\n          <div class=\"col-lg-11\">\r\n            <div class=\"row justify-content-end\">\r\n\r\n              <div class=\"col-lg-3 col-md-5 col-6 d-md-flex align-items-md-stretch\">\r\n                <div class=\"count-box\">\r\n                  <i class=\"bi bi-emoji-smile\"></i>\r\n                  <span data-purecounter-start=\"0\" data-purecounter-end=\"125\" data-purecounter-duration=\"1\" class=\"purecounter\"></span>\r\n                  <p>Project</p>\r\n                </div>\r\n              </div>\r\n\r\n              <div class=\"col-lg-3 col-md-5 col-6 d-md-flex align-items-md-stretch\">\r\n                <div class=\"count-box\">\r\n                  <i class=\"bi bi-journal-richtext\"></i>\r\n                  <span data-purecounter-start=\"0\" data-purecounter-end=\"5\" data-purecounter-duration=\"1\" class=\"purecounter\"></span>\r\n                  <p>Ouvrage</p>\r\n                </div>\r\n              </div>\r\n\r\n              <div class=\"col-lg-3 col-md-5 col-6 d-md-flex align-items-md-stretch\">\r\n                <div class=\"count-box\">\r\n                  <i class=\"bi bi-clock\"></i>\r\n                  <span data-purecounter-start=\"0\" data-purecounter-end=\"10\" data-purecounter-duration=\"1\" class=\"purecounter\"></span>\r\n                  <p>Année d'experience</p>\r\n                </div>\r\n              </div>\r\n\r\n              <div class=\"col-lg-3 col-md-5 col-6 d-md-flex align-items-md-stretch\">\r\n                <div class=\"count-box\">\r\n                  <i class=\"bi bi-award\"></i>\r\n                  <span data-purecounter-start=\"0\" data-purecounter-end=\"2\" data-purecounter-duration=\"1\" class=\"purecounter\"></span>\r\n                  <p>Honneur et Merite</p>\r\n                </div>\r\n              </div>\r\n\r\n            </div>\r\n          </div>\r\n        </div> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [_hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [_hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ======= Hero Section ======= "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("section", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [_hoisted_3, _hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
+    to: {
+      name: 'books'
+    },
+    "class": "btn-get-started scrollto"
+  }, {
+    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+      return [_hoisted_6];
+    }),
+    _: 1
+    /* STABLE */
+
+  }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <a href=\"https://www.youtube.com/watch?v=jDDaplaOz7Q\" class=\"glightbox btn-watch-video\"><i class=\"bi bi-play-circle\"></i><span>Watch Video</span></a> ")])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End Hero "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ======= About Section ======= "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("section", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div class=\"row justify-content-end\">\r\n          <div class=\"col-lg-11\">\r\n            <div class=\"row justify-content-end\">\r\n\r\n              <div class=\"col-lg-3 col-md-5 col-6 d-md-flex align-items-md-stretch\">\r\n                <div class=\"count-box\">\r\n                  <i class=\"bi bi-emoji-smile\"></i>\r\n                  <span data-purecounter-start=\"0\" data-purecounter-end=\"125\" data-purecounter-duration=\"1\" class=\"purecounter\"></span>\r\n                  <p>Project</p>\r\n                </div>\r\n              </div>\r\n\r\n              <div class=\"col-lg-3 col-md-5 col-6 d-md-flex align-items-md-stretch\">\r\n                <div class=\"count-box\">\r\n                  <i class=\"bi bi-journal-richtext\"></i>\r\n                  <span data-purecounter-start=\"0\" data-purecounter-end=\"5\" data-purecounter-duration=\"1\" class=\"purecounter\"></span>\r\n                  <p>Ouvrage</p>\r\n                </div>\r\n              </div>\r\n\r\n              <div class=\"col-lg-3 col-md-5 col-6 d-md-flex align-items-md-stretch\">\r\n                <div class=\"count-box\">\r\n                  <i class=\"bi bi-clock\"></i>\r\n                  <span data-purecounter-start=\"0\" data-purecounter-end=\"10\" data-purecounter-duration=\"1\" class=\"purecounter\"></span>\r\n                  <p>Année d'experience</p>\r\n                </div>\r\n              </div>\r\n\r\n              <div class=\"col-lg-3 col-md-5 col-6 d-md-flex align-items-md-stretch\">\r\n                <div class=\"count-box\">\r\n                  <i class=\"bi bi-award\"></i>\r\n                  <span data-purecounter-start=\"0\" data-purecounter-end=\"2\" data-purecounter-duration=\"1\" class=\"purecounter\"></span>\r\n                  <p>Honneur et Merite</p>\r\n                </div>\r\n              </div>\r\n\r\n            </div>\r\n          </div>\r\n        </div> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [_hoisted_10, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [_hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
     "class": "btn btn-block w-100",
     to: {
       name: 'about'
@@ -24854,17 +25009,17 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_11];
+      return [_hoisted_16];
     }),
     _: 1
     /* STABLE */
 
   })])])])], 512
   /* NEED_PATCH */
-  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End About Section "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ======= Features Section ======= "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("section", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <ul class=\"nav nav-tabs row d-flex\">\r\n          <li class=\"nav-item col-3\">\r\n            <a class=\"nav-link active show\" data-bs-toggle=\"tab\" href=\"#tab-1\">\r\n              <i class=\"ri-gps-line\"></i>\r\n              <h4 class=\"d-none d-lg-block\">Modi sit est dela pireda nest</h4>\r\n            </a>\r\n          </li>\r\n          <li class=\"nav-item col-3\">\r\n            <a class=\"nav-link\" data-bs-toggle=\"tab\" href=\"#tab-2\">\r\n              <i class=\"ri-body-scan-line\"></i>\r\n              <h4 class=\"d-none d-lg-block\">Unde praesenti mara setra le</h4>\r\n            </a>\r\n          </li>\r\n          <li class=\"nav-item col-3\">\r\n            <a class=\"nav-link\" data-bs-toggle=\"tab\" href=\"#tab-3\">\r\n              <i class=\"ri-sun-line\"></i>\r\n              <h4 class=\"d-none d-lg-block\">Pariatur explica nitro dela</h4>\r\n            </a>\r\n          </li>\r\n          <li class=\"nav-item col-3\">\r\n            <a class=\"nav-link\" data-bs-toggle=\"tab\" href=\"#tab-4\">\r\n              <i class=\"ri-store-line\"></i>\r\n              <h4 class=\"d-none d-lg-block\">Nostrum qui dile node</h4>\r\n            </a>\r\n          </li>\r\n        </ul> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_17, [_hoisted_18, _hoisted_19, _hoisted_20, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End About Section "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ======= Features Section ======= "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("section", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_18, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <ul class=\"nav nav-tabs row d-flex\">\r\n          <li class=\"nav-item col-3\">\r\n            <a class=\"nav-link active show\" data-bs-toggle=\"tab\" href=\"#tab-1\">\r\n              <i class=\"ri-gps-line\"></i>\r\n              <h4 class=\"d-none d-lg-block\">Modi sit est dela pireda nest</h4>\r\n            </a>\r\n          </li>\r\n          <li class=\"nav-item col-3\">\r\n            <a class=\"nav-link\" data-bs-toggle=\"tab\" href=\"#tab-2\">\r\n              <i class=\"ri-body-scan-line\"></i>\r\n              <h4 class=\"d-none d-lg-block\">Unde praesenti mara setra le</h4>\r\n            </a>\r\n          </li>\r\n          <li class=\"nav-item col-3\">\r\n            <a class=\"nav-link\" data-bs-toggle=\"tab\" href=\"#tab-3\">\r\n              <i class=\"ri-sun-line\"></i>\r\n              <h4 class=\"d-none d-lg-block\">Pariatur explica nitro dela</h4>\r\n            </a>\r\n          </li>\r\n          <li class=\"nav-item col-3\">\r\n            <a class=\"nav-link\" data-bs-toggle=\"tab\" href=\"#tab-4\">\r\n              <i class=\"ri-store-line\"></i>\r\n              <h4 class=\"d-none d-lg-block\">Nostrum qui dile node</h4>\r\n            </a>\r\n          </li>\r\n        </ul> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_19, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_20, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_21, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_22, [_hoisted_23, _hoisted_24, _hoisted_25, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
     "class": "btn btn-block w-100",
     to: {
-      name: 'about'
+      name: 'dkfondation'
     },
     style: {
       "border": "1px solid orange",
@@ -24872,29 +25027,29 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_21];
+      return [_hoisted_26];
     }),
     _: 1
     /* STABLE */
 
-  }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <h3>Mission BARUC</h3>\r\n         \r\n                <ul>\r\n                  <li><i class=\"ri-check-double-line\"></i> C'est quoi la mission Baruc.</li>\r\n                <p>La Mission BARUC est une plateforme 100% virtuelle, une maison d’édition chrétienne\r\n                     constitué de plusieurs bien-aimés frères et sœurs pour l’émergence du royaume de Dieu \r\n                     a travers de l’écriture ointe.\r\n                 </p>\r\n                  <li><i class=\"ri-check-double-line\"></i> Objectif</li> \r\n                 <p>\r\n                     Dans le livre de Jérémie 36 :4 qui est notre texte de base la bible dit ceci : Jérémie appela \r\n                      Baruc, fils de Nérija; et Baruc écrivit dans un livre, sous la dictée de Jérémie, toutes les \r\n                      paroles que l'Eternel avait dites à Jérémie. Comme Baruc avait la mission de mettre en \r\n                      écrit tout ce que Dieu a dit au prophète Jérémie sur sa dicté. Nous avons aussi ce même \r\n                      objectif, celui de promouvoir le royaume de Dieu par l’écriture, et aussi de mettre en écrit\r\n                      tout ce que Dieu a communiqué a tous ceux qui veulent écrire un livre. Nous sommes là \r\n                      pour les aider à faire sortir les livres qui sommeillent en eux. Voilà pourquoi cette \r\n                      entreprise porte le nom de Baruc. Car nous croyons que tous ceux qui veulent faire un \r\n                      impact, organisent des conférences, des croisades, des mouvements prophétiques etc. \r\n                      Mais tous ceux qui veulent laisser un héritage, écrivent des livres\r\n                 </p>\r\n               </ul> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <li><i class=\"ri-check-double-line\"></i>SERVICES OFFERTS :</li>\r\n                 <p>\r\n                  1. Consultation : L’éditeur consultera le client afin de l’aider à bien canaliser ses \r\n                      idées pour une meilleure exposé de sa narration s’il est dans l’incapacité. \r\n                      2. Tâches Editoriales : Correction portant au niveau de la grammaire, utilisation des \r\n                      mots d’orthographe, ponctuation, structure de la phrase ,édition stylistique, \r\n                      édition de développement (clarification du sens polissage du langage), édition \r\n                      ligne par ligne pour plus de fluidité et de clarté tout en conservant la voix et le \r\n                      style de l'auteur suggestions d'édition, l'amélioration de la vue d'ensemble, \r\n                      aspects du livre tels que le développement des personnages et de l'intrigue, \r\n                      histoire de fond, écriture supplémentaire nécessaire pour améliorer les parties \r\n                      narratives du livre, réarrangement possible de sections ou de chapitres au besoin, \r\n                      suppressions de sections redondantes ou qui pourrait nuire à l'histoire.\r\n\r\n                      3. Portée du Processus d'Edition\r\n                      L'éditeur éditera le manuscrit comme décrit dans la section des tâches éditoriales \r\n                      ci-dessus et l'enverra à l'auteur pour approbation. L’éditeur enverra deux \r\n                      versions, en montrant toutes les marques d'édition en utilisant les changements \r\n                      de piste dans Microsoft Word et une version propre avec les modifications \r\n                      incorporées cela se fera à chaque quart d'étape du livre. L'auteur apportera toutes \r\n                      les révisions nécessaires dans la version propre du manuscrit et répondra à toutes \r\n                      les questions de l'éditeur et renverra le manuscrit à l'éditeur. L’éditeur \r\n                      incorporera ces modifications ou corrections dans le manuscrit et effectuera une \r\n                      seconde édition légère\r\n                      L’éditeur préparera un PDF de base pour l'auteur à envoyer à ses lecteurs bêta. Si \r\n                      les lecteurs bêta signalent de vraies erreurs dans le manuscrit, l'éditeur les \r\n                      corrigera tout en effectuant une relecture finale.\r\n                      Mission Baruc\r\n                      4. Conception de la couverture : L’éditeur doit fournir une conception de couverture \r\n                      professionnelle et originale pour le livre. L’éditeur sera responsable de la mise en \r\n                      forme de la couverture de l'ebook et des couvertures imprimées (du recto au dos \r\n                      ) si l'auteur choisit à tout moment de résilier ce contrat d'édition, la conception de \r\n                      couverture unique créée par Mission Baruc ne peut pas être utilisée pour republier \r\n                      le livre avec un autre éditeur.\r\n                      5. ISBN\r\n                      L'éditeur obtiendra et attribuera un ISBN unique pour chaque édition du livre \r\n                      répertorié dans cet accord d'édition. Mention plus bas dans les règlements a ce sujet.\r\n                      6. Publications : L’éditeur publiera l´ouvrage sur des plateformes standards et \r\n                      sécurisés. L´ouvrage sera exclusivement sur le marché que par les règles régis des \r\n                      droits d´auteurs.\r\n                      7. Promotion : L’ouvrage sera promouvoir pendant un mois afin d´aider l´auteur à\r\n                      atteindre le plus de lecteurs possibles.\r\n                      N.B le contenu littéraire de l´ouvrage joue un rôle de 40% dans la promotion du \r\n                      livre, ce qui veut dire que 40% de promotion sera sur la charge de ce que l´auteur \r\n                      exposera dans sa narration. Le design et la tache éditoriale seront les 60% que \r\n                      Baruc aura à couvrir.\r\n                 </p> ")]), _hoisted_22])])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End Features Section "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ======= Portfolio Section ======= "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("section", _hoisted_23, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_24, [_hoisted_25, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div class=\"row\" data-aos=\"fade-up\" data-aos-delay=\"100\">\r\n          <div class=\"col-lg-12 d-flex justify-content-center\">\r\n            <ul id=\"portfolio-flters\">\r\n              <li data-filter=\"*\" class=\"filter-active\">Tout</li>\r\n              <li data-filter=\".filter-app\">Sotériologie</li>\r\n              <li data-filter=\".filter-card\">Prophetique</li>\r\n              <li data-filter=\".filter-web\">autre</li>\r\n            </ul>\r\n          </div>\r\n        </div> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_26, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.books.slice(0, 3), function (book) {
+  }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <h3>Mission BARUC</h3>\r\n         \r\n                <ul>\r\n                  <li><i class=\"ri-check-double-line\"></i> C'est quoi la mission Baruc.</li>\r\n                <p>La Mission BARUC est une plateforme 100% virtuelle, une maison d’édition chrétienne\r\n                     constitué de plusieurs bien-aimés frères et sœurs pour l’émergence du royaume de Dieu \r\n                     a travers de l’écriture ointe.\r\n                 </p>\r\n                  <li><i class=\"ri-check-double-line\"></i> Objectif</li> \r\n                 <p>\r\n                     Dans le livre de Jérémie 36 :4 qui est notre texte de base la bible dit ceci : Jérémie appela \r\n                      Baruc, fils de Nérija; et Baruc écrivit dans un livre, sous la dictée de Jérémie, toutes les \r\n                      paroles que l'Eternel avait dites à Jérémie. Comme Baruc avait la mission de mettre en \r\n                      écrit tout ce que Dieu a dit au prophète Jérémie sur sa dicté. Nous avons aussi ce même \r\n                      objectif, celui de promouvoir le royaume de Dieu par l’écriture, et aussi de mettre en écrit\r\n                      tout ce que Dieu a communiqué a tous ceux qui veulent écrire un livre. Nous sommes là \r\n                      pour les aider à faire sortir les livres qui sommeillent en eux. Voilà pourquoi cette \r\n                      entreprise porte le nom de Baruc. Car nous croyons que tous ceux qui veulent faire un \r\n                      impact, organisent des conférences, des croisades, des mouvements prophétiques etc. \r\n                      Mais tous ceux qui veulent laisser un héritage, écrivent des livres\r\n                 </p>\r\n               </ul> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <li><i class=\"ri-check-double-line\"></i>SERVICES OFFERTS :</li>\r\n                 <p>\r\n                  1. Consultation : L’éditeur consultera le client afin de l’aider à bien canaliser ses \r\n                      idées pour une meilleure exposé de sa narration s’il est dans l’incapacité. \r\n                      2. Tâches Editoriales : Correction portant au niveau de la grammaire, utilisation des \r\n                      mots d’orthographe, ponctuation, structure de la phrase ,édition stylistique, \r\n                      édition de développement (clarification du sens polissage du langage), édition \r\n                      ligne par ligne pour plus de fluidité et de clarté tout en conservant la voix et le \r\n                      style de l'auteur suggestions d'édition, l'amélioration de la vue d'ensemble, \r\n                      aspects du livre tels que le développement des personnages et de l'intrigue, \r\n                      histoire de fond, écriture supplémentaire nécessaire pour améliorer les parties \r\n                      narratives du livre, réarrangement possible de sections ou de chapitres au besoin, \r\n                      suppressions de sections redondantes ou qui pourrait nuire à l'histoire.\r\n\r\n                      3. Portée du Processus d'Edition\r\n                      L'éditeur éditera le manuscrit comme décrit dans la section des tâches éditoriales \r\n                      ci-dessus et l'enverra à l'auteur pour approbation. L’éditeur enverra deux \r\n                      versions, en montrant toutes les marques d'édition en utilisant les changements \r\n                      de piste dans Microsoft Word et une version propre avec les modifications \r\n                      incorporées cela se fera à chaque quart d'étape du livre. L'auteur apportera toutes \r\n                      les révisions nécessaires dans la version propre du manuscrit et répondra à toutes \r\n                      les questions de l'éditeur et renverra le manuscrit à l'éditeur. L’éditeur \r\n                      incorporera ces modifications ou corrections dans le manuscrit et effectuera une \r\n                      seconde édition légère\r\n                      L’éditeur préparera un PDF de base pour l'auteur à envoyer à ses lecteurs bêta. Si \r\n                      les lecteurs bêta signalent de vraies erreurs dans le manuscrit, l'éditeur les \r\n                      corrigera tout en effectuant une relecture finale.\r\n                      Mission Baruc\r\n                      4. Conception de la couverture : L’éditeur doit fournir une conception de couverture \r\n                      professionnelle et originale pour le livre. L’éditeur sera responsable de la mise en \r\n                      forme de la couverture de l'ebook et des couvertures imprimées (du recto au dos \r\n                      ) si l'auteur choisit à tout moment de résilier ce contrat d'édition, la conception de \r\n                      couverture unique créée par Mission Baruc ne peut pas être utilisée pour republier \r\n                      le livre avec un autre éditeur.\r\n                      5. ISBN\r\n                      L'éditeur obtiendra et attribuera un ISBN unique pour chaque édition du livre \r\n                      répertorié dans cet accord d'édition. Mention plus bas dans les règlements a ce sujet.\r\n                      6. Publications : L’éditeur publiera l´ouvrage sur des plateformes standards et \r\n                      sécurisés. L´ouvrage sera exclusivement sur le marché que par les règles régis des \r\n                      droits d´auteurs.\r\n                      7. Promotion : L’ouvrage sera promouvoir pendant un mois afin d´aider l´auteur à\r\n                      atteindre le plus de lecteurs possibles.\r\n                      N.B le contenu littéraire de l´ouvrage joue un rôle de 40% dans la promotion du \r\n                      livre, ce qui veut dire que 40% de promotion sera sur la charge de ce que l´auteur \r\n                      exposera dans sa narration. Le design et la tache éditoriale seront les 60% que \r\n                      Baruc aura à couvrir.\r\n                 </p> ")]), _hoisted_27])])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End Features Section "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ======= Portfolio Section ======= "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("section", _hoisted_28, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_29, [_hoisted_30, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div class=\"row\" data-aos=\"fade-up\" data-aos-delay=\"100\">\r\n          <div class=\"col-lg-12 d-flex justify-content-center\">\r\n            <ul id=\"portfolio-flters\">\r\n              <li data-filter=\"*\" class=\"filter-active\">Tout</li>\r\n              <li data-filter=\".filter-app\">Sotériologie</li>\r\n              <li data-filter=\".filter-card\">Prophetique</li>\r\n              <li data-filter=\".filter-web\">autre</li>\r\n            </ul>\r\n          </div>\r\n        </div> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_31, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.books.slice(0, 3), function (book) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
       "class": "col-lg-4 col-md-6 portfolio-item filter-app",
       key: book.id
-    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_27, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_32, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
       src: 'assets/img/books/' + book.cover,
       "class": "card-img-top",
       alt: "cover"
     }, null, 8
     /* PROPS */
-    , _hoisted_28), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <img src=\"{{ asset('assets/img/books/'+book.cover}}\" class=\"card-img-top\" alt=\"...\"> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_29, [_hoisted_30, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h6", _hoisted_31, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+    , _hoisted_33), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <img src=\"{{ asset('assets/img/books/'+book.cover}}\" class=\"card-img-top\" alt=\"...\"> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_34, [_hoisted_35, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h6", _hoisted_36, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
       href: "",
       textContent: (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(book.title)
     }, null, 8
     /* PROPS */
-    , _hoisted_32)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_33, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.readMore(book.description)), 1
+    , _hoisted_37)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_38, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.readMore(book.description)), 1
     /* TEXT */
-    ), _hoisted_34])])]);
+    ), _hoisted_39])])]);
   }), 128
   /* KEYED_FRAGMENT */
   ))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
@@ -24908,12 +25063,12 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_35];
+      return [_hoisted_40];
     }),
     _: 1
     /* STABLE */
 
-  })])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ======= End Portfolio Section ======= "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ======= Contact Section ======= "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("section", _hoisted_36, _hoisted_38, 512
+  })])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ======= End Portfolio Section ======= "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ======= Contact Section ======= "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("section", _hoisted_41, _hoisted_43, 512
   /* NEED_PATCH */
   ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End Contact Section ")]);
 }
@@ -25241,8 +25396,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_sweetalert2__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue-sweetalert2 */ "./node_modules/vue-sweetalert2/dist/vue-sweetalert.umd.js");
 /* harmony import */ var vue_sweetalert2__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(vue_sweetalert2__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var sweetalert2_dist_sweetalert2_min_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! sweetalert2/dist/sweetalert2.min.css */ "./node_modules/sweetalert2/dist/sweetalert2.min.css");
-/* harmony import */ var _admin_books_Create_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./admin/books/Create.vue */ "./resources/js/admin/books/Create.vue");
-/* harmony import */ var _admin_books_Edit_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./admin/books/Edit.vue */ "./resources/js/admin/books/Edit.vue");
+/* harmony import */ var laravel_vue_pagination__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! laravel-vue-pagination */ "./node_modules/laravel-vue-pagination/dist/laravel-vue-pagination.es.js");
+/* harmony import */ var _admin_books_Create_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./admin/books/Create.vue */ "./resources/js/admin/books/Create.vue");
+/* harmony import */ var _admin_books_Edit_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./admin/books/Edit.vue */ "./resources/js/admin/books/Edit.vue");
+
 
 
 
@@ -25251,8 +25408,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var app = (0,vue__WEBPACK_IMPORTED_MODULE_1__.createApp)();
-app.component('AddBook', _admin_books_Create_vue__WEBPACK_IMPORTED_MODULE_5__["default"]);
-app.component('EditBook', _admin_books_Edit_vue__WEBPACK_IMPORTED_MODULE_6__["default"]);
+app.component('AddBook', _admin_books_Create_vue__WEBPACK_IMPORTED_MODULE_6__["default"]);
+app.component('EditBook', _admin_books_Edit_vue__WEBPACK_IMPORTED_MODULE_7__["default"]);
+app.component('Pagination', laravel_vue_pagination__WEBPACK_IMPORTED_MODULE_5__["default"]);
 app.use((vue_sweetalert2__WEBPACK_IMPORTED_MODULE_3___default()));
 app.use(_router__WEBPACK_IMPORTED_MODULE_2__["default"]).mount("#app");
 
@@ -30596,6 +30754,308 @@ module.exports = function (cssWithMappingToString) {
 
   return list;
 };
+
+/***/ }),
+
+/***/ "./node_modules/laravel-vue-pagination/dist/laravel-vue-pagination.es.js":
+/*!*******************************************************************************!*\
+  !*** ./node_modules/laravel-vue-pagination/dist/laravel-vue-pagination.es.js ***!
+  \*******************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ LaravelVuePagination)
+/* harmony export */ });
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+
+const _sfc_main$1 = {
+  emits: ["pagination-change-page"],
+  props: {
+    data: {
+      type: Object,
+      default: () => {
+      }
+    },
+    limit: {
+      type: Number,
+      default: 0
+    },
+    showDisabled: {
+      type: Boolean,
+      default: false
+    },
+    size: {
+      type: String,
+      default: "default",
+      validator: (value) => {
+        return ["small", "default", "large"].indexOf(value) !== -1;
+      }
+    },
+    align: {
+      type: String,
+      default: "left",
+      validator: (value) => {
+        return ["left", "center", "right"].indexOf(value) !== -1;
+      }
+    }
+  },
+  computed: {
+    isApiResource() {
+      return !!this.data.meta;
+    },
+    currentPage() {
+      return this.isApiResource ? this.data.meta.current_page : this.data.current_page;
+    },
+    firstPageUrl() {
+      return this.isApiResource ? this.data.links.first : null;
+    },
+    from() {
+      return this.isApiResource ? this.data.meta.from : this.data.from;
+    },
+    lastPage() {
+      return this.isApiResource ? this.data.meta.last_page : this.data.last_page;
+    },
+    lastPageUrl() {
+      return this.isApiResource ? this.data.links.last : null;
+    },
+    nextPageUrl() {
+      return this.isApiResource ? this.data.links.next : this.data.next_page_url;
+    },
+    perPage() {
+      return this.isApiResource ? this.data.meta.per_page : this.data.per_page;
+    },
+    prevPageUrl() {
+      return this.isApiResource ? this.data.links.prev : this.data.prev_page_url;
+    },
+    to() {
+      return this.isApiResource ? this.data.meta.to : this.data.to;
+    },
+    total() {
+      return this.isApiResource ? this.data.meta.total : this.data.total;
+    },
+    pageRange() {
+      if (this.limit === -1) {
+        return 0;
+      }
+      if (this.limit === 0) {
+        return this.lastPage;
+      }
+      var current = this.currentPage;
+      var last = this.lastPage;
+      var delta = this.limit;
+      var left = current - delta;
+      var right = current + delta + 1;
+      var range = [];
+      var pages = [];
+      var l;
+      for (var i = 1; i <= last; i++) {
+        if (i === 1 || i === last || i >= left && i < right) {
+          range.push(i);
+        }
+      }
+      range.forEach(function(i2) {
+        if (l) {
+          if (i2 - l === 2) {
+            pages.push(l + 1);
+          } else if (i2 - l !== 1) {
+            pages.push("...");
+          }
+        }
+        pages.push(i2);
+        l = i2;
+      });
+      return pages;
+    }
+  },
+  methods: {
+    previousPage() {
+      this.selectPage(this.currentPage - 1);
+    },
+    nextPage() {
+      this.selectPage(this.currentPage + 1);
+    },
+    selectPage(page) {
+      if (page === "...") {
+        return;
+      }
+      this.$emit("pagination-change-page", page);
+    }
+  },
+  render() {
+    return this.$slots.default({
+      data: this.data,
+      limit: this.limit,
+      showDisabled: this.showDisabled,
+      size: this.size,
+      align: this.align,
+      computed: {
+        isApiResource: this.isApiResource,
+        currentPage: this.currentPage,
+        firstPageUrl: this.firstPageUrl,
+        from: this.from,
+        lastPage: this.lastPage,
+        lastPageUrl: this.lastPageUrl,
+        nextPageUrl: this.nextPageUrl,
+        perPage: this.perPage,
+        prevPageUrl: this.prevPageUrl,
+        to: this.to,
+        total: this.total,
+        pageRange: this.pageRange
+      },
+      prevButtonEvents: {
+        click: (e) => {
+          e.preventDefault();
+          this.previousPage();
+        }
+      },
+      nextButtonEvents: {
+        click: (e) => {
+          e.preventDefault();
+          this.nextPage();
+        }
+      },
+      pageButtonEvents: (page) => ({
+        click: (e) => {
+          e.preventDefault();
+          this.selectPage(page);
+        }
+      })
+    });
+  }
+};
+var _export_sfc = (sfc, props) => {
+  const target = sfc.__vccOpts || sfc;
+  for (const [key, val] of props) {
+    target[key] = val;
+  }
+  return target;
+};
+const _sfc_main = {
+  inheritAttrs: false,
+  emits: ["pagination-change-page"],
+  components: {
+    RenderlessLaravelVuePagination: _sfc_main$1
+  },
+  props: {
+    data: {
+      type: Object,
+      default: () => {
+      }
+    },
+    limit: {
+      type: Number,
+      default: 0
+    },
+    showDisabled: {
+      type: Boolean,
+      default: false
+    },
+    size: {
+      type: String,
+      default: "default",
+      validator: (value) => {
+        return ["small", "default", "large"].indexOf(value) !== -1;
+      }
+    },
+    align: {
+      type: String,
+      default: "left",
+      validator: (value) => {
+        return ["left", "center", "right"].indexOf(value) !== -1;
+      }
+    }
+  },
+  methods: {
+    onPaginationChangePage(page) {
+      this.$emit("pagination-change-page", page);
+    }
+  }
+};
+const _hoisted_1 = ["tabindex"];
+const _hoisted_2 = /* @__PURE__ */ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", { "aria-hidden": "true" }, "\xAB", -1);
+const _hoisted_3 = /* @__PURE__ */ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", { class: "sr-only" }, "Previous", -1);
+const _hoisted_4 = {
+  key: 0,
+  class: "sr-only"
+};
+const _hoisted_5 = ["tabindex"];
+const _hoisted_6 = /* @__PURE__ */ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", { "aria-hidden": "true" }, "\xBB", -1);
+const _hoisted_7 = /* @__PURE__ */ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", { class: "sr-only" }, "Next", -1);
+function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
+  const _component_RenderlessLaravelVuePagination = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("RenderlessLaravelVuePagination");
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_RenderlessLaravelVuePagination, {
+    data: $props.data,
+    limit: $props.limit,
+    "show-disabled": $props.showDisabled,
+    size: $props.size,
+    align: $props.align,
+    onPaginationChangePage: $options.onPaginationChangePage
+  }, {
+    default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)((slotProps) => [
+      slotProps.computed.total > slotProps.computed.perPage ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("ul", (0,vue__WEBPACK_IMPORTED_MODULE_0__.mergeProps)({ key: 0 }, _ctx.$attrs, {
+        class: ["pagination", {
+          "pagination-sm": slotProps.size == "small",
+          "pagination-lg": slotProps.size == "large",
+          "justify-content-center": slotProps.align == "center",
+          "justify-content-end": slotProps.align == "right"
+        }]
+      }), [
+        slotProps.computed.prevPageUrl || slotProps.showDisabled ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("li", {
+          key: 0,
+          class: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["page-item pagination-prev-nav", { "disabled": !slotProps.computed.prevPageUrl }])
+        }, [
+          (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", (0,vue__WEBPACK_IMPORTED_MODULE_0__.mergeProps)({
+            class: "page-link",
+            href: "#",
+            "aria-label": "Previous",
+            tabindex: !slotProps.computed.prevPageUrl && -1
+          }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toHandlers)(slotProps.prevButtonEvents)), [
+            (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderSlot)(_ctx.$slots, "prev-nav", {}, () => [
+              _hoisted_2,
+              _hoisted_3
+            ])
+          ], 16, _hoisted_1)
+        ], 2)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("", true),
+        ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(slotProps.computed.pageRange, (page, key) => {
+          return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("li", {
+            class: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["page-item pagination-page-nav", { "active": page == slotProps.computed.currentPage }]),
+            key
+          }, [
+            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", (0,vue__WEBPACK_IMPORTED_MODULE_0__.mergeProps)({
+              class: "page-link",
+              href: "#"
+            }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toHandlers)(slotProps.pageButtonEvents(page))), [
+              (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(page) + " ", 1),
+              page == slotProps.computed.currentPage ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_4, "(current)")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("", true)
+            ], 16)
+          ], 2);
+        }), 128)),
+        slotProps.computed.nextPageUrl || slotProps.showDisabled ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("li", {
+          key: 1,
+          class: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["page-item pagination-next-nav", { "disabled": !slotProps.computed.nextPageUrl }])
+        }, [
+          (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", (0,vue__WEBPACK_IMPORTED_MODULE_0__.mergeProps)({
+            class: "page-link",
+            href: "#",
+            "aria-label": "Next",
+            tabindex: !slotProps.computed.nextPageUrl && -1
+          }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toHandlers)(slotProps.nextButtonEvents)), [
+            (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderSlot)(_ctx.$slots, "next-nav", {}, () => [
+              _hoisted_6,
+              _hoisted_7
+            ])
+          ], 16, _hoisted_5)
+        ], 2)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("", true)
+      ], 16)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("", true)
+    ]),
+    _: 3
+  }, 8, ["data", "limit", "show-disabled", "size", "align", "onPaginationChangePage"]);
+}
+var LaravelVuePagination = /* @__PURE__ */ _export_sfc(_sfc_main, [["render", _sfc_render]]);
+
+
 
 /***/ }),
 

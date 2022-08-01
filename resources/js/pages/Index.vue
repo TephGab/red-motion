@@ -6,7 +6,7 @@
         <h1>KENNY DORVILUS</h1>
         <h2>Coach, motivateur, mentor, enseignant de la parole de Dieu, voix prophétique pour les nations, revivaliste et Ecrivain</h2>
         <div class="d-flex">
-          <a href="#about" class="btn-get-started scrollto">Voir livre</a>
+          <router-link :to="{ name: 'books'}" class="btn-get-started scrollto">Voir livre</router-link>
           <!-- <a href="https://www.youtube.com/watch?v=jDDaplaOz7Q" class="glightbox btn-watch-video"><i class="bi bi-play-circle"></i><span>Watch Video</span></a> -->
         </div>
       </div>
@@ -143,7 +143,7 @@
                     c’est en cette raison que Kenny Dorvilus s’est donné lui-même et avec le 
                     peu qu’il a pour qu’il coopère dans le progrès social et éducatif d’Haïti.
                 </p>
-<router-link class="btn btn-block w-100" :to="{ name: 'about'}" style="border: 1px solid orange; color: #ffffff"> En savoir plus </router-link>
+<router-link class="btn btn-block w-100" :to="{ name: 'dkfondation'}" style="border: 1px solid orange; color: #ffffff"> En savoir plus </router-link>
                 <!-- <h3>Mission BARUC</h3>
          
                 <ul>
