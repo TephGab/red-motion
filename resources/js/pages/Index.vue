@@ -1,12 +1,13 @@
 <template>
-    <div>
-        <!-- ======= Hero Section ======= -->
-      <section id="hero">
+  <div>
+    <!-- ======= Hero Section ======= -->
+    <section id="hero">
       <div class="hero-container w-50" data-aos="fade-up" data-aos-delay="150">
         <h1>KENNY DORVILUS</h1>
-        <h2>Coach, motivateur, mentor, enseignant de la parole de Dieu, voix prophétique pour les nations, revivaliste et Ecrivain</h2>
+        <h2>Coach, motivateur, mentor, enseignant de la parole de Dieu, voix prophétique pour les nations, revivaliste
+          et Ecrivain</h2>
         <div class="d-flex">
-          <router-link :to="{ name: 'books'}" class="btn-get-started scrollto">Voir livre</router-link>
+          <router-link :to="{ name: 'books' }" class="btn-get-started scrollto">Voir livre</router-link>
           <!-- <a href="https://www.youtube.com/watch?v=jDDaplaOz7Q" class="glightbox btn-watch-video"><i class="bi bi-play-circle"></i><span>Watch Video</span></a> -->
         </div>
       </div>
@@ -67,8 +68,12 @@
           <div class="col-lg-6 pt-3 pt-lg-0 content">
             <h3>Qui est Kenny?.</h3>
             <p class="fst-italic">
-              Le Prophète Kenny est originaire du département de nord-ouest plus particulièrement de l’île de La Tortue. Benjamin d’une famille de cinq enfants. Il a fait des études de théologie au Royaume Haïti Collège Biblique (RHCB) et de génie informatique à l’Université INUKA. Kenny DORVILUS sert sa communauté et le Royaume de Dieu à bien des égards il est : coach, motivateur, mentor, enseignant de la parole de Dieu, voix prophétique pour les nations et revivaliste. Il est aussi auteur de plusieurs ouvrages dont : 
-              <br/>
+              Le Prophète Kenny est originaire du département de nord-ouest plus particulièrement de l’île de La Tortue.
+              Benjamin d’une famille de cinq enfants. Il a fait des études de théologie au Royaume Haïti Collège
+              Biblique (RHCB) et de génie informatique à l’Université INUKA. Kenny DORVILUS sert sa communauté et le
+              Royaume de Dieu à bien des égards il est : coach, motivateur, mentor, enseignant de la parole de Dieu,
+              voix prophétique pour les nations et revivaliste. Il est aussi auteur de plusieurs ouvrages dont :
+              <br />
             </p>
             <ul>
               <li><i class="bx bx-check-double"></i> 300 citations de sagesse</li>
@@ -78,10 +83,12 @@
               <li><i class="bx bx-check-double"></i> Comment conserver et faire grandir son onction </li>
             </ul>
             <p>
-              C’est un patriote dans l’âme. Et par-dessus tout un Chrétien soupirant et combattant encore jusqu’au retour son Seigneur Jésus-Christ. 
-              Il est le fondateur de DK FONDATION et également membre de la mission BARUC. 
+              C’est un patriote dans l’âme. Et par-dessus tout un Chrétien soupirant et combattant encore jusqu’au
+              retour son Seigneur Jésus-Christ.
+              Il est le fondateur de DK FONDATION et également membre de la mission BARUC.
             </p>
-            <router-link class="btn btn-block w-100" :to="{ name: 'about'}" style="border: 1px solid orange; color: #ffffff"> En savoir plus sur Kenny </router-link>
+            <router-link class="btn btn-block w-100" :to="{ name: 'about' }"
+              style="border: 1px solid orange; color: #ffffff"> En savoir plus sur Kenny </router-link>
           </div>
         </div>
 
@@ -89,7 +96,7 @@
     </section>
     <!-- End About Section -->
 
-        <!-- ======= Features Section ======= -->
+    <!-- ======= Features Section ======= -->
     <section id="features" class="features">
       <div class="container" data-aos="fade-up">
 
@@ -126,24 +133,25 @@
               <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0" style="color: #585A5C">
                 <h3 style="color: orange">Mission Baruc et DK FONDATION</h3>
                 <p class="fst-italic">
-                  DK FONDATION est une fondation fondée par Kenny Dorvilus, située sur l’île 
+                  DK FONDATION est une fondation fondée par Kenny Dorvilus, située sur l’île
                   de la tortue Nord-Ouest d’Haïti, elle a pour but d’aider les enfants démunis
-                   dans l’île. Par rapport à la situation actuelle du pays, l’avenir du pays 
-                   repose sur les enfants. Pour que les enfants puissent assumer cette charge, 
-                   il faudrait qu’une chose, l’éducation tout comme Nelson Mandela a dit : 
-                   l’éducation est l’arme la plus puissante qu’on puisse utiliser pour changer
-                    le monde.
+                  dans l’île. Par rapport à la situation actuelle du pays, l’avenir du pays
+                  repose sur les enfants. Pour que les enfants puissent assumer cette charge,
+                  il faudrait qu’une chose, l’éducation tout comme Nelson Mandela a dit :
+                  l’éducation est l’arme la plus puissante qu’on puisse utiliser pour changer
+                  le monde.
                 </p>
-                
+
                 <p>
-                    donc DK FONDATION met l’accent sur l’éducation parce qu’il pense 
-                    qu’avec ce dernier, la société pourra s’améliorer. En dépit de tous les 
-                    phénomènes qui se passent en Haïti, le banditisme, le kidnapping, il y a une
-                    catégorie de personnes qui croit qu’Haïti peut franchir une autre porte, 
-                    c’est en cette raison que Kenny Dorvilus s’est donné lui-même et avec le 
-                    peu qu’il a pour qu’il coopère dans le progrès social et éducatif d’Haïti.
+                  donc DK FONDATION met l’accent sur l’éducation parce qu’il pense
+                  qu’avec ce dernier, la société pourra s’améliorer. En dépit de tous les
+                  phénomènes qui se passent en Haïti, le banditisme, le kidnapping, il y a une
+                  catégorie de personnes qui croit qu’Haïti peut franchir une autre porte,
+                  c’est en cette raison que Kenny Dorvilus s’est donné lui-même et avec le
+                  peu qu’il a pour qu’il coopère dans le progrès social et éducatif d’Haïti.
                 </p>
-<router-link class="btn btn-block w-100" :to="{ name: 'dkfondation'}" style="border: 1px solid orange; color: #ffffff"> En savoir plus </router-link>
+                <router-link class="btn btn-block w-100" :to="{ name: 'dkfondation' }"
+                  style="border: 1px solid orange; color: #ffffff"> En savoir plus </router-link>
                 <!-- <h3>Mission BARUC</h3>
          
                 <ul>
@@ -166,7 +174,7 @@
                       Mais tous ceux qui veulent laisser un héritage, écrivent des livres
                  </p>
                </ul> -->
-                 <!-- <li><i class="ri-check-double-line"></i>SERVICES OFFERTS :</li>
+                <!-- <li><i class="ri-check-double-line"></i>SERVICES OFFERTS :</li>
                  <p>
                   1. Consultation : L’éditeur consultera le client afin de l’aider à bien canaliser ses 
                       idées pour une meilleure exposé de sa narration s’il est dans l’incapacité. 
@@ -213,15 +221,15 @@
                       exposera dans sa narration. Le design et la tache éditoriale seront les 60% que 
                       Baruc aura à couvrir.
                  </p> -->
-                
-           
+
+
               </div>
               <div class="col-lg-6 order-1 order-lg-2 text-center">
                 <img src="assets/img/baruc.png" alt="" class="img-fluid">
               </div>
             </div>
           </div>
-    
+
         </div>
 
       </div>
@@ -254,25 +262,28 @@
         <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
           <div class="col-lg-4 col-md-6 portfolio-item filter-app" v-for="book in books.slice(0, 3)" :key="book.id">
             <div class="card" style="background: #0D0D0D;">
-             <img :src="'assets/img/books/'+book.cover" class="card-img-top" alt="cover" />
+              <img :src="'assets/img/books/' + book.cover" class="card-img-top" alt="cover" />
               <!-- <img src="{{ asset('assets/img/books/'+book.cover}}" class="card-img-top" alt="..."> -->
               <div class="card-body">
-                 <span class="small text-muted date_plulication"><i class="fas fa-clock"></i> Publie le 20 juin 2020 </span>
+                <span class="small text-muted date_plulication"><i class="fas fa-clock"></i> Publie le 20 juin 2020
+                </span>
                 <h6 class="card-title"><a href="" v-text="book.title"></a></h6>
-                <p class="card-text" style="font-size: 13px; font-weight: normal">{{ readMore(book.description)}}</p>
-                <button class="btn btn-warning btn-sm">Lire la suite</button>
+                <p class="card-text" style="font-size: 13px; font-weight: normal">{{ readMore(book.description) }}</p>
+                <button class="btn btn-warning btn-sm" @click="showBook(book.id)">Lire la suite</button>
               </div>
             </div>
           </div>
-         
+
         </div>
-<router-link class="btn btn-block w-100" :to="{ name: 'books'}" style="border: 1px solid orange; color: #ffffff"> Voir tout les livres </router-link>
+        <router-link class="btn btn-block w-100" :to="{ name: 'books' }"
+          style="border: 1px solid orange; color: #ffffff"> Voir tout les livres </router-link>
       </div>
+      <show-book v-bind:bookToShow="bookToShow"></show-book>
     </section>
     <!-- ======= End Portfolio Section ======= -->
-   
 
-   
+
+
 
     <!-- ======= Contact Section ======= -->
     <section id="contact" ref="contact" class="contact">
@@ -342,30 +353,47 @@
       </div>
     </section>
     <!-- End Contact Section -->
-    </div>
+  </div>
 </template>
 
 <script>
 export default {
-    data() {
+  data() {
     return {
-      books: ''
+      books: {},
+      bookToShow: '',
+      myModal: ''
     }
   },
-  methods:{
-      readMore(data){
-       return data.substring(0, 110) + '...';
+  methods: {
+    readMore(data) {
+      return data.substring(0, 110) + '...';
+    },
+    showBook(id) {
+      axios.get('api/books/' + id)
+        .then((response) => {
+          this.bookToShow = response.data;
+        })
+        .catch((error) => console.log(error));
+
+      this.myModal = new bootstrap.Modal(document.getElementById('showBookModal'), {
+        backdrop: true
+      });
+      this.myModal.show()
+    },
+      closeAddBookModal() {
+      this.myModal.hide()
     },
   },
-    created() {
+  created() {
     axios.get('api/books')
       .then((response) => {
         this.books = response.data.data;
       })
       .catch((error) => console.log(error));
   },
-    mounted() {
-        console.log("Index mounted.");
-    },
+  mounted() {
+    console.log("Index mounted.");
+  },
 };
 </script>
