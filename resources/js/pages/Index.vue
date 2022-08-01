@@ -140,8 +140,8 @@
         <div class="tab-content">
           <div class="tab-pane active show" id="tab-1">
             <div class="row">
-              <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0" style="color: #585A5C">
-                <h3 style="color: orange">Mission Baruc et DK FONDATION</h3>
+              <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0">
+                <h3>Mission Baruc et DK FONDATION</h3>
                 <p class="fst-italic">
                   DK FONDATION est une fondation fondée par Kenny Dorvilus, située sur l’île
                   de la tortue Nord-Ouest d’Haïti, elle a pour but d’aider les enfants démunis
@@ -162,80 +162,9 @@
                 </p>
                 <router-link class="btn btn-block w-100" :to="{ name: 'dkfondation' }"
                   style="border: 1px solid orange; color: #ffffff"> En savoir plus </router-link>
-                <!-- <h3>Mission BARUC</h3>
-         
-                <ul>
-                  <li><i class="ri-check-double-line"></i> C'est quoi la mission Baruc.</li>
-                <p>La Mission BARUC est une plateforme 100% virtuelle, une maison d’édition chrétienne
-                     constitué de plusieurs bien-aimés frères et sœurs pour l’émergence du royaume de Dieu 
-                     a travers de l’écriture ointe.
-                 </p>
-                  <li><i class="ri-check-double-line"></i> Objectif</li> 
-                 <p>
-                     Dans le livre de Jérémie 36 :4 qui est notre texte de base la bible dit ceci : Jérémie appela 
-                      Baruc, fils de Nérija; et Baruc écrivit dans un livre, sous la dictée de Jérémie, toutes les 
-                      paroles que l'Eternel avait dites à Jérémie. Comme Baruc avait la mission de mettre en 
-                      écrit tout ce que Dieu a dit au prophète Jérémie sur sa dicté. Nous avons aussi ce même 
-                      objectif, celui de promouvoir le royaume de Dieu par l’écriture, et aussi de mettre en écrit
-                      tout ce que Dieu a communiqué a tous ceux qui veulent écrire un livre. Nous sommes là 
-                      pour les aider à faire sortir les livres qui sommeillent en eux. Voilà pourquoi cette 
-                      entreprise porte le nom de Baruc. Car nous croyons que tous ceux qui veulent faire un 
-                      impact, organisent des conférences, des croisades, des mouvements prophétiques etc. 
-                      Mais tous ceux qui veulent laisser un héritage, écrivent des livres
-                 </p>
-               </ul> -->
-                <!-- <li><i class="ri-check-double-line"></i>SERVICES OFFERTS :</li>
-                 <p>
-                  1. Consultation : L’éditeur consultera le client afin de l’aider à bien canaliser ses 
-                      idées pour une meilleure exposé de sa narration s’il est dans l’incapacité. 
-                      2. Tâches Editoriales : Correction portant au niveau de la grammaire, utilisation des 
-                      mots d’orthographe, ponctuation, structure de la phrase ,édition stylistique, 
-                      édition de développement (clarification du sens polissage du langage), édition 
-                      ligne par ligne pour plus de fluidité et de clarté tout en conservant la voix et le 
-                      style de l'auteur suggestions d'édition, l'amélioration de la vue d'ensemble, 
-                      aspects du livre tels que le développement des personnages et de l'intrigue, 
-                      histoire de fond, écriture supplémentaire nécessaire pour améliorer les parties 
-                      narratives du livre, réarrangement possible de sections ou de chapitres au besoin, 
-                      suppressions de sections redondantes ou qui pourrait nuire à l'histoire.
-
-                      3. Portée du Processus d'Edition
-                      L'éditeur éditera le manuscrit comme décrit dans la section des tâches éditoriales 
-                      ci-dessus et l'enverra à l'auteur pour approbation. L’éditeur enverra deux 
-                      versions, en montrant toutes les marques d'édition en utilisant les changements 
-                      de piste dans Microsoft Word et une version propre avec les modifications 
-                      incorporées cela se fera à chaque quart d'étape du livre. L'auteur apportera toutes 
-                      les révisions nécessaires dans la version propre du manuscrit et répondra à toutes 
-                      les questions de l'éditeur et renverra le manuscrit à l'éditeur. L’éditeur 
-                      incorporera ces modifications ou corrections dans le manuscrit et effectuera une 
-                      seconde édition légère
-                      L’éditeur préparera un PDF de base pour l'auteur à envoyer à ses lecteurs bêta. Si 
-                      les lecteurs bêta signalent de vraies erreurs dans le manuscrit, l'éditeur les 
-                      corrigera tout en effectuant une relecture finale.
-                      Mission Baruc
-                      4. Conception de la couverture : L’éditeur doit fournir une conception de couverture 
-                      professionnelle et originale pour le livre. L’éditeur sera responsable de la mise en 
-                      forme de la couverture de l'ebook et des couvertures imprimées (du recto au dos 
-                      ) si l'auteur choisit à tout moment de résilier ce contrat d'édition, la conception de 
-                      couverture unique créée par Mission Baruc ne peut pas être utilisée pour republier 
-                      le livre avec un autre éditeur.
-                      5. ISBN
-                      L'éditeur obtiendra et attribuera un ISBN unique pour chaque édition du livre 
-                      répertorié dans cet accord d'édition. Mention plus bas dans les règlements a ce sujet.
-                      6. Publications : L’éditeur publiera l´ouvrage sur des plateformes standards et 
-                      sécurisés. L´ouvrage sera exclusivement sur le marché que par les règles régis des 
-                      droits d´auteurs.
-                      7. Promotion : L’ouvrage sera promouvoir pendant un mois afin d´aider l´auteur à
-                      atteindre le plus de lecteurs possibles.
-                      N.B le contenu littéraire de l´ouvrage joue un rôle de 40% dans la promotion du 
-                      livre, ce qui veut dire que 40% de promotion sera sur la charge de ce que l´auteur 
-                      exposera dans sa narration. Le design et la tache éditoriale seront les 60% que 
-                      Baruc aura à couvrir.
-                 </p> -->
-
-
               </div>
               <div class="col-lg-6 order-1 order-lg-2 text-center">
-                <img src="assets/img/baruc.png" alt="" class="img-fluid">
+                <img src="assets/img/baruc.png" alt="" class="img-fluid"/>
               </div>
             </div>
           </div>
@@ -258,24 +187,14 @@
           <p>Les plus Telechargés</p>
         </div>
 
-        <!-- <div class="row" data-aos="fade-up" data-aos-delay="100">
-          <div class="col-lg-12 d-flex justify-content-center">
-            <ul id="portfolio-flters">
-              <li data-filter="*" class="filter-active">Tout</li>
-              <li data-filter=".filter-app">Sotériologie</li>
-              <li data-filter=".filter-card">Prophetique</li>
-              <li data-filter=".filter-web">autre</li>
-            </ul>
-          </div>
-        </div> -->
-
         <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
           <div class="col-lg-4 col-md-6 portfolio-item filter-app" v-for="book in books.slice(0, 3)" :key="book.id">
             <div class="card" style="background: #0D0D0D;">
               <img :src="'assets/img/books/' + book.cover" class="card-img-top" alt="cover" />
               <!-- <img src="{{ asset('assets/img/books/'+book.cover}}" class="card-img-top" alt="..."> -->
               <div class="card-body">
-                <span class="small text-muted date_plulication"><i class="fas fa-clock"></i> Publie le 20 juin 2020
+                <span class="small text-muted date_plulication"><i class="fas fa-clock"></i>
+                {{ formatDate(book.created_at) }}
                 </span>
                 <h6 class="card-title"><a href="" v-text="book.title"></a></h6>
                 <p class="card-text" style="font-size: 13px; font-weight: normal">{{ readMore(book.description) }}</p>
@@ -367,6 +286,7 @@
 </template>
 
 <script>
+import moment from 'moment';
 export default {
   data() {
     return {
@@ -394,6 +314,10 @@ export default {
     closeAddBookModal() {
       this.myModal.hide()
     },
+    formatDate(date){
+      moment.locale('fr');
+      return moment(date).format('D MMMM, YYYY')
+    }
   },
   created() {
     axios.get('api/books')

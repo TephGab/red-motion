@@ -818,6 +818,12 @@ section {
 .features .nav-tabs {
   border: 0;
 }
+.features h3{
+  color: #C68101;
+}
+.features p{
+  color: #D1D5DB;
+}
 .features .nav-link {
   border: 1px solid #b5ccdb;
   padding: 15px;

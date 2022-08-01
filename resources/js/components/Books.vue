@@ -26,7 +26,8 @@
             <div class="card" style="background: #0D0D0D;">
               <img :src="'assets/img/books/' + book.cover" class="card-img-top" alt="cover" />
               <div class="card-body">
-                <span class="small text-muted date_plulication"><i class="fas fa-clock"></i> Publie le 20 juin 2020
+                <span class="small text-muted date_plulication"><i class="fas fa-clock"></i>
+                  {{ formatDate(book.created_at) }}
                 </span>
                 <h6 class="card-title"><a href="" v-text="book.title"></a></h6>
                 <p class="card-text" style="font-size: 13px; font-weight: normal">{{ readMore(book.description) }}</p>
@@ -38,19 +39,19 @@
         </div>
         <Pagination :data="books" @pagination-change-page="getResults" />
       </div>
-       <show-book v-bind:bookToShow="bookToShow"></show-book>
+      <show-book v-bind:bookToShow="bookToShow"></show-book>
     </section>
     <!-- ======= End Portfolio Section ======= -->
   </div>
 </template>
 
-
 <script>
+import moment from 'moment';
 export default {
   data() {
     return {
       books: {},
-       bookToShow: '',
+      bookToShow: '',
       myModal: ''
     }
   },
@@ -58,7 +59,7 @@ export default {
     readMore(data) {
       return data.substring(0, 110) + '...';
     },
-       showBook(id) {
+    showBook(id) {
       axios.get('api/books/' + id)
         .then((response) => {
           this.bookToShow = response.data;
@@ -70,7 +71,11 @@ export default {
       });
       this.myModal.show()
     },
-     getResults(page = 1) {
+    formatDate(date) {
+      moment.locale('fr');
+      return moment(date).format('D MMMM, YYYY')
+    },
+    getResults(page = 1) {
       axios.get('api/books?page=' + page)
         .then(response => {
           this.books = response.data;
