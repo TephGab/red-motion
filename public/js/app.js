@@ -23222,6 +23222,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       axios.post('api/books/', data).then(function (response) {
         _this2.$emit('book-added', response);
 
+        _this2.myModal.hide();
+
         _this2.$swal({
           text: 'Nouveau livre enregistré!',
           toast: true,
@@ -23232,8 +23234,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           showConfirmButton: false,
           timer: 2500
         });
-
-        _this2.myModal.hide();
       })["catch"](function (error) {
         return console.log(error);
       });
@@ -23353,8 +23353,7 @@ __webpack_require__.r(__webpack_exports__);
         _this2.books = response.data;
       })["catch"](function (error) {
         return console.log(error);
-      });
-      this.closeAddBookModal();
+      }); //  this.closeAddBookModal();
     },
     deleteBook: function deleteBook(id) {
       var _this3 = this;

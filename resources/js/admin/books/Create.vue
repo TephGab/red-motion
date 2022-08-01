@@ -92,9 +92,11 @@ export default {
             data.append("title", this.title)
             data.append("description", this.description)
             data.append("cover", this.cover)
+            
             axios.post('api/books/', data)
             .then((response) => {
-                this.$emit('book-added', response)
+                this.$emit('book-added', response);
+                this.myModal.hide();
                  this.$swal({
                 text: 'Nouveau livre enregistré!',
                 toast: true,
@@ -105,7 +107,6 @@ export default {
                 showConfirmButton: false,
                 timer: 2500
                 });
-                this.myModal.hide();
                 })
             .catch((error) => console.log(error));
         },

@@ -113,7 +113,7 @@ export default {
           this.books = response.data;
         })
         .catch((error) => console.log(error));
-       this.closeAddBookModal();
+      //  this.closeAddBookModal();
     },
 
     deleteBook(id) {
