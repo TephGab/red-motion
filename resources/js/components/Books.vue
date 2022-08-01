@@ -30,7 +30,7 @@
                 </span>
                 <h6 class="card-title"><a href="" v-text="book.title"></a></h6>
                 <p class="card-text" style="font-size: 13px; font-weight: normal">{{ readMore(book.description) }}</p>
-                <button class="btn btn-warning btn-sm">Lire la suite</button>
+                <button class="btn btn-warning btn-sm" @click="showBook(book.id)">Lire la suite</button>
               </div>
             </div>
           </div>
@@ -38,6 +38,7 @@
         </div>
         <Pagination :data="books" @pagination-change-page="getResults" />
       </div>
+       <show-book v-bind:bookToShow="bookToShow"></show-book>
     </section>
     <!-- ======= End Portfolio Section ======= -->
   </div>
@@ -48,12 +49,26 @@
 export default {
   data() {
     return {
-      books: {}
+      books: {},
+       bookToShow: '',
+      myModal: ''
     }
   },
   methods: {
     readMore(data) {
       return data.substring(0, 110) + '...';
+    },
+       showBook(id) {
+      axios.get('api/books/' + id)
+        .then((response) => {
+          this.bookToShow = response.data;
+        })
+        .catch((error) => console.log(error));
+
+      this.myModal = new bootstrap.Modal(document.getElementById('showBookModal'), {
+        backdrop: true
+      });
+      this.myModal.show()
     },
      getResults(page = 1) {
       axios.get('api/books?page=' + page)

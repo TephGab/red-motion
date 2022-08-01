@@ -8,7 +8,7 @@
                     <div class="modal-content" style="background: #0D0D0D">
                         <div class="modal-header text-center" style="display: flex; justify-content: center; align-items: center; color: #C68101; text-align: center;">
                             <div></div>
-                            <h5 class="modal-title" id="showBookModalLabel" style="border: 1px solid red;">{{ bookToShow.title }}</h5>
+                            <h5 class="modal-title" id="showBookModalLabel">{{ bookToShow.title }}</h5>
                             <button type="button" class="btn-close" aria-label="Close"
                                 @click="closeAddBookModal"></button>
                         </div>

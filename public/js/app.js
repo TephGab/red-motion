@@ -23445,27 +23445,42 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
-      books: {}
+      books: {},
+      bookToShow: '',
+      myModal: ''
     };
   },
   methods: {
     readMore: function readMore(data) {
       return data.substring(0, 110) + '...';
     },
-    getResults: function getResults() {
+    showBook: function showBook(id) {
       var _this = this;
+
+      axios.get('api/books/' + id).then(function (response) {
+        _this.bookToShow = response.data;
+      })["catch"](function (error) {
+        return console.log(error);
+      });
+      this.myModal = new bootstrap.Modal(document.getElementById('showBookModal'), {
+        backdrop: true
+      });
+      this.myModal.show();
+    },
+    getResults: function getResults() {
+      var _this2 = this;
 
       var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
       axios.get('api/books?page=' + page).then(function (response) {
-        _this.books = response.data;
+        _this2.books = response.data;
       });
     }
   },
   created: function created() {
-    var _this2 = this;
+    var _this3 = this;
 
     axios.get('api/books').then(function (response) {
-      _this2.books = response.data;
+      _this3.books = response.data;
     })["catch"](function (error) {
       return console.log(error);
     });
@@ -24558,15 +24573,11 @@ var _hoisted_11 = {
     "font-weight": "normal"
   }
 };
-
-var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-  "class": "btn btn-warning btn-sm"
-}, "Lire la suite", -1
-/* HOISTED */
-);
-
+var _hoisted_12 = ["onClick"];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_Pagination = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Pagination");
+
+  var _component_show_book = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("show-book");
 
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ======= Portfolio Section ======= "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("section", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [_hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div class=\"row\" data-aos=\"fade-up\" data-aos-delay=\"100\">\r\n          <div class=\"col-lg-12 d-flex justify-content-center\">\r\n            <ul id=\"portfolio-flters\">\r\n              <li data-filter=\"*\" class=\"filter-active\">Tout</li>\r\n              <li data-filter=\".filter-app\">Sotériologie</li>\r\n              <li data-filter=\".filter-card\">Prophetique</li>\r\n              <li data-filter=\".filter-web\">autre</li>\r\n            </ul>\r\n          </div>\r\n        </div> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.books.data, function (book) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
@@ -24585,7 +24596,14 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     /* PROPS */
     , _hoisted_10)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.readMore(book.description)), 1
     /* TEXT */
-    ), _hoisted_12])])]);
+    ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+      "class": "btn btn-warning btn-sm",
+      onClick: function onClick($event) {
+        return $options.showBook(book.id);
+      }
+    }, "Lire la suite", 8
+    /* PROPS */
+    , _hoisted_12)])])]);
   }), 128
   /* KEYED_FRAGMENT */
   ))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Pagination, {
@@ -24593,7 +24611,11 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     onPaginationChangePage: $options.getResults
   }, null, 8
   /* PROPS */
-  , ["data", "onPaginationChangePage"])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ======= End Portfolio Section ======= ")]);
+  , ["data", "onPaginationChangePage"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_show_book, {
+    bookToShow: $data.bookToShow
+  }, null, 8
+  /* PROPS */
+  , ["bookToShow"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ======= End Portfolio Section ======= ")]);
 }
 
 /***/ }),
@@ -24788,10 +24810,7 @@ var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 
 var _hoisted_8 = {
   "class": "modal-title",
-  id: "showBookModalLabel",
-  style: {
-    "border": "1px solid red"
-  }
+  id: "showBookModalLabel"
 };
 var _hoisted_9 = {
   "class": "modal-body"
