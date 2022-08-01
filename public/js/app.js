@@ -23219,7 +23219,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       data.append("title", this.title);
       data.append("description", this.description);
       data.append("cover", this.cover);
-      axios.post('api/books/', data).then(function (response) {
+      axios.post('api/books', data).then(function (response) {
         _this2.$emit('book-added', response);
 
         _this2.myModal.hide();

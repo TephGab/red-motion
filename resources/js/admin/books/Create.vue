@@ -93,7 +93,7 @@ export default {
             data.append("description", this.description)
             data.append("cover", this.cover)
             
-            axios.post('api/books/', data)
+            axios.post('api/books', data)
             .then((response) => {
                 this.$emit('book-added', response);
                 this.myModal.hide();
