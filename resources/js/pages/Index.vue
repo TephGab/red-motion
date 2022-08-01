@@ -7,8 +7,18 @@
         <h2>Coach, motivateur, mentor, enseignant de la parole de Dieu, voix prophétique pour les nations, revivaliste
           et Ecrivain</h2>
         <div class="d-flex">
-          <router-link :to="{ name: 'books' }" class="btn-get-started scrollto">Voir livre</router-link>
+          <router-link :to="{ name: 'books' }" class="btn-get-started scrollto">Voir livre 
+          <i class='fas fa-book-open ml-1'></i></router-link>
           <!-- <a href="https://www.youtube.com/watch?v=jDDaplaOz7Q" class="glightbox btn-watch-video"><i class="bi bi-play-circle"></i><span>Watch Video</span></a> -->
+        </div>
+        <div class="social-links separator mt-3" style="font-size: 2.5rem">
+        <div class="line"></div>
+            <a href="https://www.twitter.com/KenProphete" target="_blank" class="twitter"><i class="bx bxl-twitter"></i></a>
+            <a href="https://www.facebook.com/dorvilus.kenny" target="_blank" class="facebook"><i class="bx bxl-facebook"></i></a>
+            <a href="https://www.instagram.com/propheticsnapper_kenny" target="_blank" class="instagram"><i class="bx bxl-instagram"></i></a>
+            <!-- <a href="#" class="google-plus m-2"><i class="bx bxl-skype"></i></a> -->
+            <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+          <div class="line"></div>
         </div>
       </div>
     </section>
@@ -381,7 +391,7 @@ export default {
       });
       this.myModal.show()
     },
-      closeAddBookModal() {
+    closeAddBookModal() {
       this.myModal.hide()
     },
   },

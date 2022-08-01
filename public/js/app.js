@@ -24901,23 +24901,31 @@ var _hoisted_5 = {
   "class": "d-flex"
 };
 
-var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Voir livre");
+var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Voir livre ");
 
-var _hoisted_7 = {
+var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
+  "class": "fas fa-book-open ml-1"
+}, null, -1
+/* HOISTED */
+);
+
+var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"social-links separator mt-3\" style=\"font-size:2.5rem;\"><div class=\"line\"></div><a href=\"https://www.twitter.com/KenProphete\" target=\"_blank\" class=\"twitter\"><i class=\"bx bxl-twitter\"></i></a><a href=\"https://www.facebook.com/dorvilus.kenny\" target=\"_blank\" class=\"facebook\"><i class=\"bx bxl-facebook\"></i></a><a href=\"https://www.instagram.com/propheticsnapper_kenny\" target=\"_blank\" class=\"instagram\"><i class=\"bx bxl-instagram\"></i></a><!-- &lt;a href=&quot;#&quot; class=&quot;google-plus m-2&quot;&gt;&lt;i class=&quot;bx bxl-skype&quot;&gt;&lt;/i&gt;&lt;/a&gt; --><a href=\"#\" class=\"linkedin\"><i class=\"bx bxl-linkedin\"></i></a><div class=\"line\"></div></div>", 1);
+
+var _hoisted_9 = {
   id: "about",
   ref: "about",
   "class": "about"
 };
-var _hoisted_8 = {
+var _hoisted_10 = {
   "class": "container",
   "data-aos": "fade-up"
 };
-var _hoisted_9 = {
+var _hoisted_11 = {
   "class": "row",
   id: "about"
 };
 
-var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "col-lg-6 video-box align-self-baseline",
   "data-aos": "zoom-in",
   "data-aos-delay": "100"
@@ -24929,40 +24937,40 @@ var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 /* HOISTED */
 );
 
-var _hoisted_11 = {
+var _hoisted_13 = {
   "class": "col-lg-6 pt-3 pt-lg-0 content"
 };
 
-var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<h3>Qui est Kenny?.</h3><p class=\"fst-italic\"> Le Prophète Kenny est originaire du département de nord-ouest plus particulièrement de l’île de La Tortue. Benjamin d’une famille de cinq enfants. Il a fait des études de théologie au Royaume Haïti Collège Biblique (RHCB) et de génie informatique à l’Université INUKA. Kenny DORVILUS sert sa communauté et le Royaume de Dieu à bien des égards il est : coach, motivateur, mentor, enseignant de la parole de Dieu, voix prophétique pour les nations et revivaliste. Il est aussi auteur de plusieurs ouvrages dont : <br></p><ul><li><i class=\"bx bx-check-double\"></i> 300 citations de sagesse</li><li><i class=\"bx bx-check-double\"></i> 95 Révélations sur le mystère de la prière en Esprit </li><li><i class=\"bx bx-check-double\"></i> Haïti une nouvelle génération une nouvelle vague du réveil</li><li><i class=\"bx bx-check-double\"></i> 7 vérités irréfutables de la foi </li><li><i class=\"bx bx-check-double\"></i> Comment conserver et faire grandir son onction </li></ul><p> C’est un patriote dans l’âme. Et par-dessus tout un Chrétien soupirant et combattant encore jusqu’au retour son Seigneur Jésus-Christ. Il est le fondateur de DK FONDATION et également membre de la mission BARUC. </p>", 4);
+var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<h3>Qui est Kenny?.</h3><p class=\"fst-italic\"> Le Prophète Kenny est originaire du département de nord-ouest plus particulièrement de l’île de La Tortue. Benjamin d’une famille de cinq enfants. Il a fait des études de théologie au Royaume Haïti Collège Biblique (RHCB) et de génie informatique à l’Université INUKA. Kenny DORVILUS sert sa communauté et le Royaume de Dieu à bien des égards il est : coach, motivateur, mentor, enseignant de la parole de Dieu, voix prophétique pour les nations et revivaliste. Il est aussi auteur de plusieurs ouvrages dont : <br></p><ul><li><i class=\"bx bx-check-double\"></i> 300 citations de sagesse</li><li><i class=\"bx bx-check-double\"></i> 95 Révélations sur le mystère de la prière en Esprit </li><li><i class=\"bx bx-check-double\"></i> Haïti une nouvelle génération une nouvelle vague du réveil</li><li><i class=\"bx bx-check-double\"></i> 7 vérités irréfutables de la foi </li><li><i class=\"bx bx-check-double\"></i> Comment conserver et faire grandir son onction </li></ul><p> C’est un patriote dans l’âme. Et par-dessus tout un Chrétien soupirant et combattant encore jusqu’au retour son Seigneur Jésus-Christ. Il est le fondateur de DK FONDATION et également membre de la mission BARUC. </p>", 4);
 
-var _hoisted_16 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" En savoir plus sur Kenny ");
+var _hoisted_18 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" En savoir plus sur Kenny ");
 
-var _hoisted_17 = {
+var _hoisted_19 = {
   id: "features",
   "class": "features"
 };
-var _hoisted_18 = {
+var _hoisted_20 = {
   "class": "container",
   "data-aos": "fade-up"
 };
-var _hoisted_19 = {
+var _hoisted_21 = {
   "class": "tab-content"
 };
-var _hoisted_20 = {
+var _hoisted_22 = {
   "class": "tab-pane active show",
   id: "tab-1"
 };
-var _hoisted_21 = {
+var _hoisted_23 = {
   "class": "row"
 };
-var _hoisted_22 = {
+var _hoisted_24 = {
   "class": "col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0",
   style: {
     "color": "#585A5C"
   }
 };
 
-var _hoisted_23 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", {
+var _hoisted_25 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", {
   style: {
     "color": "orange"
   }
@@ -24970,19 +24978,19 @@ var _hoisted_23 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 /* HOISTED */
 );
 
-var _hoisted_24 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
+var _hoisted_26 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
   "class": "fst-italic"
 }, " DK FONDATION est une fondation fondée par Kenny Dorvilus, située sur l’île de la tortue Nord-Ouest d’Haïti, elle a pour but d’aider les enfants démunis dans l’île. Par rapport à la situation actuelle du pays, l’avenir du pays repose sur les enfants. Pour que les enfants puissent assumer cette charge, il faudrait qu’une chose, l’éducation tout comme Nelson Mandela a dit : l’éducation est l’arme la plus puissante qu’on puisse utiliser pour changer le monde. ", -1
 /* HOISTED */
 );
 
-var _hoisted_25 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, " donc DK FONDATION met l’accent sur l’éducation parce qu’il pense qu’avec ce dernier, la société pourra s’améliorer. En dépit de tous les phénomènes qui se passent en Haïti, le banditisme, le kidnapping, il y a une catégorie de personnes qui croit qu’Haïti peut franchir une autre porte, c’est en cette raison que Kenny Dorvilus s’est donné lui-même et avec le peu qu’il a pour qu’il coopère dans le progrès social et éducatif d’Haïti. ", -1
+var _hoisted_27 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, " donc DK FONDATION met l’accent sur l’éducation parce qu’il pense qu’avec ce dernier, la société pourra s’améliorer. En dépit de tous les phénomènes qui se passent en Haïti, le banditisme, le kidnapping, il y a une catégorie de personnes qui croit qu’Haïti peut franchir une autre porte, c’est en cette raison que Kenny Dorvilus s’est donné lui-même et avec le peu qu’il a pour qu’il coopère dans le progrès social et éducatif d’Haïti. ", -1
 /* HOISTED */
 );
 
-var _hoisted_26 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" En savoir plus ");
+var _hoisted_28 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" En savoir plus ");
 
-var _hoisted_27 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_29 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "col-lg-6 order-1 order-lg-2 text-center"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
   src: "assets/img/baruc.png",
@@ -24992,38 +25000,38 @@ var _hoisted_27 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 /* HOISTED */
 );
 
-var _hoisted_28 = {
+var _hoisted_30 = {
   id: "portfolio",
   "class": "portfolio"
 };
-var _hoisted_29 = {
+var _hoisted_31 = {
   "class": "container",
   "data-aos": "fade-up"
 };
 
-var _hoisted_30 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_32 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "section-title"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", null, "Quelque livvres"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "Les plus Telechargés")], -1
 /* HOISTED */
 );
 
-var _hoisted_31 = {
+var _hoisted_33 = {
   "class": "row portfolio-container",
   "data-aos": "fade-up",
   "data-aos-delay": "200"
 };
-var _hoisted_32 = {
+var _hoisted_34 = {
   "class": "card",
   style: {
     "background": "#0D0D0D"
   }
 };
-var _hoisted_33 = ["src"];
-var _hoisted_34 = {
+var _hoisted_35 = ["src"];
+var _hoisted_36 = {
   "class": "card-body"
 };
 
-var _hoisted_35 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+var _hoisted_37 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
   "class": "small text-muted date_plulication"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
   "class": "fas fa-clock"
@@ -25031,28 +25039,28 @@ var _hoisted_35 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 /* HOISTED */
 );
 
-var _hoisted_36 = {
+var _hoisted_38 = {
   "class": "card-title"
 };
-var _hoisted_37 = ["textContent"];
-var _hoisted_38 = {
+var _hoisted_39 = ["textContent"];
+var _hoisted_40 = {
   "class": "card-text",
   style: {
     "font-size": "13px",
     "font-weight": "normal"
   }
 };
-var _hoisted_39 = ["onClick"];
+var _hoisted_41 = ["onClick"];
 
-var _hoisted_40 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Voir tout les livres ");
+var _hoisted_42 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Voir tout les livres ");
 
-var _hoisted_41 = {
+var _hoisted_43 = {
   id: "contact",
   ref: "contact",
   "class": "contact"
 };
 
-var _hoisted_42 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_44 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "container",
   "data-aos": "fade-up",
   style: {
@@ -25145,7 +25153,7 @@ var _hoisted_42 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 /* HOISTED */
 );
 
-var _hoisted_43 = [_hoisted_42];
+var _hoisted_45 = [_hoisted_44];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_router_link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("router-link");
 
@@ -25158,12 +25166,12 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "class": "btn-get-started scrollto"
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_6];
+      return [_hoisted_6, _hoisted_7];
     }),
     _: 1
     /* STABLE */
 
-  }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <a href=\"https://www.youtube.com/watch?v=jDDaplaOz7Q\" class=\"glightbox btn-watch-video\"><i class=\"bi bi-play-circle\"></i><span>Watch Video</span></a> ")])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End Hero "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ======= About Section ======= "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("section", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div class=\"row justify-content-end\">\r\n          <div class=\"col-lg-11\">\r\n            <div class=\"row justify-content-end\">\r\n\r\n              <div class=\"col-lg-3 col-md-5 col-6 d-md-flex align-items-md-stretch\">\r\n                <div class=\"count-box\">\r\n                  <i class=\"bi bi-emoji-smile\"></i>\r\n                  <span data-purecounter-start=\"0\" data-purecounter-end=\"125\" data-purecounter-duration=\"1\" class=\"purecounter\"></span>\r\n                  <p>Project</p>\r\n                </div>\r\n              </div>\r\n\r\n              <div class=\"col-lg-3 col-md-5 col-6 d-md-flex align-items-md-stretch\">\r\n                <div class=\"count-box\">\r\n                  <i class=\"bi bi-journal-richtext\"></i>\r\n                  <span data-purecounter-start=\"0\" data-purecounter-end=\"5\" data-purecounter-duration=\"1\" class=\"purecounter\"></span>\r\n                  <p>Ouvrage</p>\r\n                </div>\r\n              </div>\r\n\r\n              <div class=\"col-lg-3 col-md-5 col-6 d-md-flex align-items-md-stretch\">\r\n                <div class=\"count-box\">\r\n                  <i class=\"bi bi-clock\"></i>\r\n                  <span data-purecounter-start=\"0\" data-purecounter-end=\"10\" data-purecounter-duration=\"1\" class=\"purecounter\"></span>\r\n                  <p>Année d'experience</p>\r\n                </div>\r\n              </div>\r\n\r\n              <div class=\"col-lg-3 col-md-5 col-6 d-md-flex align-items-md-stretch\">\r\n                <div class=\"count-box\">\r\n                  <i class=\"bi bi-award\"></i>\r\n                  <span data-purecounter-start=\"0\" data-purecounter-end=\"2\" data-purecounter-duration=\"1\" class=\"purecounter\"></span>\r\n                  <p>Honneur et Merite</p>\r\n                </div>\r\n              </div>\r\n\r\n            </div>\r\n          </div>\r\n        </div> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [_hoisted_10, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [_hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
+  }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <a href=\"https://www.youtube.com/watch?v=jDDaplaOz7Q\" class=\"glightbox btn-watch-video\"><i class=\"bi bi-play-circle\"></i><span>Watch Video</span></a> ")]), _hoisted_8])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End Hero "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ======= About Section ======= "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("section", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div class=\"row justify-content-end\">\r\n          <div class=\"col-lg-11\">\r\n            <div class=\"row justify-content-end\">\r\n\r\n              <div class=\"col-lg-3 col-md-5 col-6 d-md-flex align-items-md-stretch\">\r\n                <div class=\"count-box\">\r\n                  <i class=\"bi bi-emoji-smile\"></i>\r\n                  <span data-purecounter-start=\"0\" data-purecounter-end=\"125\" data-purecounter-duration=\"1\" class=\"purecounter\"></span>\r\n                  <p>Project</p>\r\n                </div>\r\n              </div>\r\n\r\n              <div class=\"col-lg-3 col-md-5 col-6 d-md-flex align-items-md-stretch\">\r\n                <div class=\"count-box\">\r\n                  <i class=\"bi bi-journal-richtext\"></i>\r\n                  <span data-purecounter-start=\"0\" data-purecounter-end=\"5\" data-purecounter-duration=\"1\" class=\"purecounter\"></span>\r\n                  <p>Ouvrage</p>\r\n                </div>\r\n              </div>\r\n\r\n              <div class=\"col-lg-3 col-md-5 col-6 d-md-flex align-items-md-stretch\">\r\n                <div class=\"count-box\">\r\n                  <i class=\"bi bi-clock\"></i>\r\n                  <span data-purecounter-start=\"0\" data-purecounter-end=\"10\" data-purecounter-duration=\"1\" class=\"purecounter\"></span>\r\n                  <p>Année d'experience</p>\r\n                </div>\r\n              </div>\r\n\r\n              <div class=\"col-lg-3 col-md-5 col-6 d-md-flex align-items-md-stretch\">\r\n                <div class=\"count-box\">\r\n                  <i class=\"bi bi-award\"></i>\r\n                  <span data-purecounter-start=\"0\" data-purecounter-end=\"2\" data-purecounter-duration=\"1\" class=\"purecounter\"></span>\r\n                  <p>Honneur et Merite</p>\r\n                </div>\r\n              </div>\r\n\r\n            </div>\r\n          </div>\r\n        </div> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [_hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [_hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
     "class": "btn btn-block w-100",
     to: {
       name: 'about'
@@ -25174,14 +25182,14 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_16];
+      return [_hoisted_18];
     }),
     _: 1
     /* STABLE */
 
   })])])])], 512
   /* NEED_PATCH */
-  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End About Section "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ======= Features Section ======= "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("section", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_18, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <ul class=\"nav nav-tabs row d-flex\">\r\n          <li class=\"nav-item col-3\">\r\n            <a class=\"nav-link active show\" data-bs-toggle=\"tab\" href=\"#tab-1\">\r\n              <i class=\"ri-gps-line\"></i>\r\n              <h4 class=\"d-none d-lg-block\">Modi sit est dela pireda nest</h4>\r\n            </a>\r\n          </li>\r\n          <li class=\"nav-item col-3\">\r\n            <a class=\"nav-link\" data-bs-toggle=\"tab\" href=\"#tab-2\">\r\n              <i class=\"ri-body-scan-line\"></i>\r\n              <h4 class=\"d-none d-lg-block\">Unde praesenti mara setra le</h4>\r\n            </a>\r\n          </li>\r\n          <li class=\"nav-item col-3\">\r\n            <a class=\"nav-link\" data-bs-toggle=\"tab\" href=\"#tab-3\">\r\n              <i class=\"ri-sun-line\"></i>\r\n              <h4 class=\"d-none d-lg-block\">Pariatur explica nitro dela</h4>\r\n            </a>\r\n          </li>\r\n          <li class=\"nav-item col-3\">\r\n            <a class=\"nav-link\" data-bs-toggle=\"tab\" href=\"#tab-4\">\r\n              <i class=\"ri-store-line\"></i>\r\n              <h4 class=\"d-none d-lg-block\">Nostrum qui dile node</h4>\r\n            </a>\r\n          </li>\r\n        </ul> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_19, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_20, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_21, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_22, [_hoisted_23, _hoisted_24, _hoisted_25, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End About Section "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ======= Features Section ======= "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("section", _hoisted_19, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_20, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <ul class=\"nav nav-tabs row d-flex\">\r\n          <li class=\"nav-item col-3\">\r\n            <a class=\"nav-link active show\" data-bs-toggle=\"tab\" href=\"#tab-1\">\r\n              <i class=\"ri-gps-line\"></i>\r\n              <h4 class=\"d-none d-lg-block\">Modi sit est dela pireda nest</h4>\r\n            </a>\r\n          </li>\r\n          <li class=\"nav-item col-3\">\r\n            <a class=\"nav-link\" data-bs-toggle=\"tab\" href=\"#tab-2\">\r\n              <i class=\"ri-body-scan-line\"></i>\r\n              <h4 class=\"d-none d-lg-block\">Unde praesenti mara setra le</h4>\r\n            </a>\r\n          </li>\r\n          <li class=\"nav-item col-3\">\r\n            <a class=\"nav-link\" data-bs-toggle=\"tab\" href=\"#tab-3\">\r\n              <i class=\"ri-sun-line\"></i>\r\n              <h4 class=\"d-none d-lg-block\">Pariatur explica nitro dela</h4>\r\n            </a>\r\n          </li>\r\n          <li class=\"nav-item col-3\">\r\n            <a class=\"nav-link\" data-bs-toggle=\"tab\" href=\"#tab-4\">\r\n              <i class=\"ri-store-line\"></i>\r\n              <h4 class=\"d-none d-lg-block\">Nostrum qui dile node</h4>\r\n            </a>\r\n          </li>\r\n        </ul> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_21, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_22, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_23, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_24, [_hoisted_25, _hoisted_26, _hoisted_27, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
     "class": "btn btn-block w-100",
     to: {
       name: 'dkfondation'
@@ -25192,27 +25200,27 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_26];
+      return [_hoisted_28];
     }),
     _: 1
     /* STABLE */
 
-  }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <h3>Mission BARUC</h3>\r\n         \r\n                <ul>\r\n                  <li><i class=\"ri-check-double-line\"></i> C'est quoi la mission Baruc.</li>\r\n                <p>La Mission BARUC est une plateforme 100% virtuelle, une maison d’édition chrétienne\r\n                     constitué de plusieurs bien-aimés frères et sœurs pour l’émergence du royaume de Dieu \r\n                     a travers de l’écriture ointe.\r\n                 </p>\r\n                  <li><i class=\"ri-check-double-line\"></i> Objectif</li> \r\n                 <p>\r\n                     Dans le livre de Jérémie 36 :4 qui est notre texte de base la bible dit ceci : Jérémie appela \r\n                      Baruc, fils de Nérija; et Baruc écrivit dans un livre, sous la dictée de Jérémie, toutes les \r\n                      paroles que l'Eternel avait dites à Jérémie. Comme Baruc avait la mission de mettre en \r\n                      écrit tout ce que Dieu a dit au prophète Jérémie sur sa dicté. Nous avons aussi ce même \r\n                      objectif, celui de promouvoir le royaume de Dieu par l’écriture, et aussi de mettre en écrit\r\n                      tout ce que Dieu a communiqué a tous ceux qui veulent écrire un livre. Nous sommes là \r\n                      pour les aider à faire sortir les livres qui sommeillent en eux. Voilà pourquoi cette \r\n                      entreprise porte le nom de Baruc. Car nous croyons que tous ceux qui veulent faire un \r\n                      impact, organisent des conférences, des croisades, des mouvements prophétiques etc. \r\n                      Mais tous ceux qui veulent laisser un héritage, écrivent des livres\r\n                 </p>\r\n               </ul> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <li><i class=\"ri-check-double-line\"></i>SERVICES OFFERTS :</li>\r\n                 <p>\r\n                  1. Consultation : L’éditeur consultera le client afin de l’aider à bien canaliser ses \r\n                      idées pour une meilleure exposé de sa narration s’il est dans l’incapacité. \r\n                      2. Tâches Editoriales : Correction portant au niveau de la grammaire, utilisation des \r\n                      mots d’orthographe, ponctuation, structure de la phrase ,édition stylistique, \r\n                      édition de développement (clarification du sens polissage du langage), édition \r\n                      ligne par ligne pour plus de fluidité et de clarté tout en conservant la voix et le \r\n                      style de l'auteur suggestions d'édition, l'amélioration de la vue d'ensemble, \r\n                      aspects du livre tels que le développement des personnages et de l'intrigue, \r\n                      histoire de fond, écriture supplémentaire nécessaire pour améliorer les parties \r\n                      narratives du livre, réarrangement possible de sections ou de chapitres au besoin, \r\n                      suppressions de sections redondantes ou qui pourrait nuire à l'histoire.\r\n\r\n                      3. Portée du Processus d'Edition\r\n                      L'éditeur éditera le manuscrit comme décrit dans la section des tâches éditoriales \r\n                      ci-dessus et l'enverra à l'auteur pour approbation. L’éditeur enverra deux \r\n                      versions, en montrant toutes les marques d'édition en utilisant les changements \r\n                      de piste dans Microsoft Word et une version propre avec les modifications \r\n                      incorporées cela se fera à chaque quart d'étape du livre. L'auteur apportera toutes \r\n                      les révisions nécessaires dans la version propre du manuscrit et répondra à toutes \r\n                      les questions de l'éditeur et renverra le manuscrit à l'éditeur. L’éditeur \r\n                      incorporera ces modifications ou corrections dans le manuscrit et effectuera une \r\n                      seconde édition légère\r\n                      L’éditeur préparera un PDF de base pour l'auteur à envoyer à ses lecteurs bêta. Si \r\n                      les lecteurs bêta signalent de vraies erreurs dans le manuscrit, l'éditeur les \r\n                      corrigera tout en effectuant une relecture finale.\r\n                      Mission Baruc\r\n                      4. Conception de la couverture : L’éditeur doit fournir une conception de couverture \r\n                      professionnelle et originale pour le livre. L’éditeur sera responsable de la mise en \r\n                      forme de la couverture de l'ebook et des couvertures imprimées (du recto au dos \r\n                      ) si l'auteur choisit à tout moment de résilier ce contrat d'édition, la conception de \r\n                      couverture unique créée par Mission Baruc ne peut pas être utilisée pour republier \r\n                      le livre avec un autre éditeur.\r\n                      5. ISBN\r\n                      L'éditeur obtiendra et attribuera un ISBN unique pour chaque édition du livre \r\n                      répertorié dans cet accord d'édition. Mention plus bas dans les règlements a ce sujet.\r\n                      6. Publications : L’éditeur publiera l´ouvrage sur des plateformes standards et \r\n                      sécurisés. L´ouvrage sera exclusivement sur le marché que par les règles régis des \r\n                      droits d´auteurs.\r\n                      7. Promotion : L’ouvrage sera promouvoir pendant un mois afin d´aider l´auteur à\r\n                      atteindre le plus de lecteurs possibles.\r\n                      N.B le contenu littéraire de l´ouvrage joue un rôle de 40% dans la promotion du \r\n                      livre, ce qui veut dire que 40% de promotion sera sur la charge de ce que l´auteur \r\n                      exposera dans sa narration. Le design et la tache éditoriale seront les 60% que \r\n                      Baruc aura à couvrir.\r\n                 </p> ")]), _hoisted_27])])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End Features Section "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ======= Portfolio Section ======= "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("section", _hoisted_28, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_29, [_hoisted_30, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div class=\"row\" data-aos=\"fade-up\" data-aos-delay=\"100\">\r\n          <div class=\"col-lg-12 d-flex justify-content-center\">\r\n            <ul id=\"portfolio-flters\">\r\n              <li data-filter=\"*\" class=\"filter-active\">Tout</li>\r\n              <li data-filter=\".filter-app\">Sotériologie</li>\r\n              <li data-filter=\".filter-card\">Prophetique</li>\r\n              <li data-filter=\".filter-web\">autre</li>\r\n            </ul>\r\n          </div>\r\n        </div> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_31, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.books.slice(0, 3), function (book) {
+  }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <h3>Mission BARUC</h3>\r\n         \r\n                <ul>\r\n                  <li><i class=\"ri-check-double-line\"></i> C'est quoi la mission Baruc.</li>\r\n                <p>La Mission BARUC est une plateforme 100% virtuelle, une maison d’édition chrétienne\r\n                     constitué de plusieurs bien-aimés frères et sœurs pour l’émergence du royaume de Dieu \r\n                     a travers de l’écriture ointe.\r\n                 </p>\r\n                  <li><i class=\"ri-check-double-line\"></i> Objectif</li> \r\n                 <p>\r\n                     Dans le livre de Jérémie 36 :4 qui est notre texte de base la bible dit ceci : Jérémie appela \r\n                      Baruc, fils de Nérija; et Baruc écrivit dans un livre, sous la dictée de Jérémie, toutes les \r\n                      paroles que l'Eternel avait dites à Jérémie. Comme Baruc avait la mission de mettre en \r\n                      écrit tout ce que Dieu a dit au prophète Jérémie sur sa dicté. Nous avons aussi ce même \r\n                      objectif, celui de promouvoir le royaume de Dieu par l’écriture, et aussi de mettre en écrit\r\n                      tout ce que Dieu a communiqué a tous ceux qui veulent écrire un livre. Nous sommes là \r\n                      pour les aider à faire sortir les livres qui sommeillent en eux. Voilà pourquoi cette \r\n                      entreprise porte le nom de Baruc. Car nous croyons que tous ceux qui veulent faire un \r\n                      impact, organisent des conférences, des croisades, des mouvements prophétiques etc. \r\n                      Mais tous ceux qui veulent laisser un héritage, écrivent des livres\r\n                 </p>\r\n               </ul> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <li><i class=\"ri-check-double-line\"></i>SERVICES OFFERTS :</li>\r\n                 <p>\r\n                  1. Consultation : L’éditeur consultera le client afin de l’aider à bien canaliser ses \r\n                      idées pour une meilleure exposé de sa narration s’il est dans l’incapacité. \r\n                      2. Tâches Editoriales : Correction portant au niveau de la grammaire, utilisation des \r\n                      mots d’orthographe, ponctuation, structure de la phrase ,édition stylistique, \r\n                      édition de développement (clarification du sens polissage du langage), édition \r\n                      ligne par ligne pour plus de fluidité et de clarté tout en conservant la voix et le \r\n                      style de l'auteur suggestions d'édition, l'amélioration de la vue d'ensemble, \r\n                      aspects du livre tels que le développement des personnages et de l'intrigue, \r\n                      histoire de fond, écriture supplémentaire nécessaire pour améliorer les parties \r\n                      narratives du livre, réarrangement possible de sections ou de chapitres au besoin, \r\n                      suppressions de sections redondantes ou qui pourrait nuire à l'histoire.\r\n\r\n                      3. Portée du Processus d'Edition\r\n                      L'éditeur éditera le manuscrit comme décrit dans la section des tâches éditoriales \r\n                      ci-dessus et l'enverra à l'auteur pour approbation. L’éditeur enverra deux \r\n                      versions, en montrant toutes les marques d'édition en utilisant les changements \r\n                      de piste dans Microsoft Word et une version propre avec les modifications \r\n                      incorporées cela se fera à chaque quart d'étape du livre. L'auteur apportera toutes \r\n                      les révisions nécessaires dans la version propre du manuscrit et répondra à toutes \r\n                      les questions de l'éditeur et renverra le manuscrit à l'éditeur. L’éditeur \r\n                      incorporera ces modifications ou corrections dans le manuscrit et effectuera une \r\n                      seconde édition légère\r\n                      L’éditeur préparera un PDF de base pour l'auteur à envoyer à ses lecteurs bêta. Si \r\n                      les lecteurs bêta signalent de vraies erreurs dans le manuscrit, l'éditeur les \r\n                      corrigera tout en effectuant une relecture finale.\r\n                      Mission Baruc\r\n                      4. Conception de la couverture : L’éditeur doit fournir une conception de couverture \r\n                      professionnelle et originale pour le livre. L’éditeur sera responsable de la mise en \r\n                      forme de la couverture de l'ebook et des couvertures imprimées (du recto au dos \r\n                      ) si l'auteur choisit à tout moment de résilier ce contrat d'édition, la conception de \r\n                      couverture unique créée par Mission Baruc ne peut pas être utilisée pour republier \r\n                      le livre avec un autre éditeur.\r\n                      5. ISBN\r\n                      L'éditeur obtiendra et attribuera un ISBN unique pour chaque édition du livre \r\n                      répertorié dans cet accord d'édition. Mention plus bas dans les règlements a ce sujet.\r\n                      6. Publications : L’éditeur publiera l´ouvrage sur des plateformes standards et \r\n                      sécurisés. L´ouvrage sera exclusivement sur le marché que par les règles régis des \r\n                      droits d´auteurs.\r\n                      7. Promotion : L’ouvrage sera promouvoir pendant un mois afin d´aider l´auteur à\r\n                      atteindre le plus de lecteurs possibles.\r\n                      N.B le contenu littéraire de l´ouvrage joue un rôle de 40% dans la promotion du \r\n                      livre, ce qui veut dire que 40% de promotion sera sur la charge de ce que l´auteur \r\n                      exposera dans sa narration. Le design et la tache éditoriale seront les 60% que \r\n                      Baruc aura à couvrir.\r\n                 </p> ")]), _hoisted_29])])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End Features Section "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ======= Portfolio Section ======= "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("section", _hoisted_30, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_31, [_hoisted_32, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div class=\"row\" data-aos=\"fade-up\" data-aos-delay=\"100\">\r\n          <div class=\"col-lg-12 d-flex justify-content-center\">\r\n            <ul id=\"portfolio-flters\">\r\n              <li data-filter=\"*\" class=\"filter-active\">Tout</li>\r\n              <li data-filter=\".filter-app\">Sotériologie</li>\r\n              <li data-filter=\".filter-card\">Prophetique</li>\r\n              <li data-filter=\".filter-web\">autre</li>\r\n            </ul>\r\n          </div>\r\n        </div> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_33, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.books.slice(0, 3), function (book) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
       "class": "col-lg-4 col-md-6 portfolio-item filter-app",
       key: book.id
-    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_32, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_34, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
       src: 'assets/img/books/' + book.cover,
       "class": "card-img-top",
       alt: "cover"
     }, null, 8
     /* PROPS */
-    , _hoisted_33), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <img src=\"{{ asset('assets/img/books/'+book.cover}}\" class=\"card-img-top\" alt=\"...\"> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_34, [_hoisted_35, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h6", _hoisted_36, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+    , _hoisted_35), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <img src=\"{{ asset('assets/img/books/'+book.cover}}\" class=\"card-img-top\" alt=\"...\"> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_36, [_hoisted_37, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h6", _hoisted_38, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
       href: "",
       textContent: (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(book.title)
     }, null, 8
     /* PROPS */
-    , _hoisted_37)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_38, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.readMore(book.description)), 1
+    , _hoisted_39)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_40, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.readMore(book.description)), 1
     /* TEXT */
     ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
       "class": "btn btn-warning btn-sm",
@@ -25221,7 +25229,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       }
     }, "Lire la suite", 8
     /* PROPS */
-    , _hoisted_39)])])]);
+    , _hoisted_41)])])]);
   }), 128
   /* KEYED_FRAGMENT */
   ))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
@@ -25235,7 +25243,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_40];
+      return [_hoisted_42];
     }),
     _: 1
     /* STABLE */
@@ -25244,7 +25252,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     bookToShow: $data.bookToShow
   }, null, 8
   /* PROPS */
-  , ["bookToShow"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ======= End Portfolio Section ======= "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ======= Contact Section ======= "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("section", _hoisted_41, _hoisted_43, 512
+  , ["bookToShow"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ======= End Portfolio Section ======= "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ======= Contact Section ======= "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("section", _hoisted_43, _hoisted_45, 512
   /* NEED_PATCH */
   ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End Contact Section ")]);
 }

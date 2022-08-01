@@ -32,7 +32,8 @@
   <link href="{{ asset('assets/vendor/glightbox/css/glightbox.min.css')}}" rel="stylesheet">
   <link href="{{ asset('assets/vendor/remixicon/remixicon.css') }}" rel="stylesheet">
   <link href="{{ asset('assets/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
-
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
   <!-- Main CSS File -->
   <!-- <link href="{{ secure_asset('assets/css/style.css') }}" rel="stylesheet"> -->
   <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
@@ -70,7 +71,9 @@
             <!-- Authentication Links -->
             @if (Auth::guest())
             <!-- <li><a href="{{ url('/login') }}">Login</a></li> -->
-            <li><a class="scrollto text-right" href="{{ url('/login') }}" style="font-size: 10px; margin-left:70px; color:beige">Login</a></li>
+            <li>
+              <a class="scrollto text-right" href="{{ url('/login') }}" style="font-size: 10px; margin-left:70px; color:beige">Login</a>
+            </li>
             <!-- <li><a href="{{ url('/register') }}">Register</a></li> -->
             @else
             <li class="dropdown">
