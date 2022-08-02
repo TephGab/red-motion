@@ -98,7 +98,7 @@
               Il est le fondateur de DK FONDATION et également membre de la mission BARUC.
             </p>
             <router-link class="btn btn-block w-100" :to="{ name: 'about' }"
-              style="border: 1px solid orange; color: #ffffff"> En savoir plus sur Kenny </router-link>
+              style="border: 1px solid orange; color: #ffffff; display: flex; justify-content: space-between; align-items: center;"><span></span> <span> En savoir plus sur Kenny</span> <i class="fa fa-angle-right"></i></router-link>
           </div>
         </div>
 
@@ -161,7 +161,7 @@
                   peu qu’il a pour qu’il coopère dans le progrès social et éducatif d’Haïti.
                 </p>
                 <router-link class="btn btn-block w-100" :to="{ name: 'dkfondation' }"
-                  style="border: 1px solid orange; color: #ffffff"> En savoir plus </router-link>
+                  style="border: 1px solid orange; color: #ffffff; display: flex; justify-content: space-between; align-items: center;"> <span></span> <span>En savoir plus</span> <i class="fa fa-angle-right"></i></router-link>
               </div>
               <div class="col-lg-6 order-1 order-lg-2 text-center">
                 <img src="assets/img/baruc.png" alt="" class="img-fluid"/>
@@ -198,14 +198,14 @@
                 </span>
                 <h6 class="card-title"><a href="" v-text="book.title"></a></h6>
                 <p class="card-text" style="font-size: 13px; font-weight: normal">{{ readMore(book.description) }}</p>
-                <button class="btn btn-warning btn-sm" @click="showBook(book.id)">Lire la suite</button>
+                <button class="btn btn-sm" @click="showBook(book.id)" style="background: #C68101; display: flex; justify-content: space-between; align-items: center;"><span></span> <span>Lire la suite</span> <i class="fa fa-angle-right mt-1 ml-1"></i></button>
               </div>
             </div>
           </div>
 
         </div>
         <router-link class="btn btn-block w-100" :to="{ name: 'books' }"
-          style="border: 1px solid orange; color: #ffffff"> Voir tout les livres </router-link>
+          style="border: 1px solid #C68101; color: #ffffff;display: flex; justify-content: space-between; align-items: center;"> <span></span> <span>Voir tout les livres</span> <i class="fa fa-angle-right"></i> </router-link>
       </div>
       <show-book v-bind:bookToShow="bookToShow"></show-book>
     </section>

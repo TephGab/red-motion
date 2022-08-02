@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\BookController;
+use App\Http\Controllers\Api\ContactController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,3 +22,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::apiResource('books', BookController::class);
 Route::get('books/{q?}',[BookController::class, 'index']);
+
+Route::apiResource('contact', ContactController::class);
