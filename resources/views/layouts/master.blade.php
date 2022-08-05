@@ -131,14 +131,14 @@
                 </p>
               </router-link>
             </li>
-            <!-- <li class="nav-item menu-open">
-              <router-link class="nav-link" class-active="active" :to="{ name: 'blogadm.index'}">
+            <li class="nav-item menu-open">
+              <router-link class="nav-link" class-active="active" :to="{ name: 'admblog'}">
                 <i class="nav-icon fas fa-blog"></i>
                 <p>
                   Blog
                 </p>
               </router-link>
-            </li> -->
+            </li>
           </ul>
         </nav>
         <!-- /.sidebar-menu -->

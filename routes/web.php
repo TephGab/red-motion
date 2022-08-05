@@ -34,6 +34,10 @@ Route::get('/contact', function () {
     return view('welcome');
 });
 
+Route::get('/blog', function () {
+    return view('welcome');
+});
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
