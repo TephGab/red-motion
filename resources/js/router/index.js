@@ -42,7 +42,7 @@ const routes = [
         component: Contact
     },
     {
-        path: '/blog',
+        path: '/posts',
         name: 'post',
         component: Blog
     },
