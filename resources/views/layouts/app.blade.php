@@ -60,7 +60,7 @@
               <router-link class="nav-link scrollto" class-active="active" :to="{ name: 'books'}"> Livres </router-link>
             </li>
             <li>
-              <router-link class="nav-link scrollto" class-active="active" :to="{ name: 'blog'}"> Blog </router-link>
+              <router-link class="nav-link scrollto" class-active="active" :to="{ name: 'post'}"> Blog </router-link>
             </li>
             <li>
               <router-link class="nav-link scrollto" class-active="active" :to="{ name: 'dkfondation'}"> DK fondation </router-link>

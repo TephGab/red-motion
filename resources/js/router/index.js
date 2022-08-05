@@ -43,7 +43,7 @@ const routes = [
     },
     {
         path: '/blog',
-        name: 'blog',
+        name: 'post',
         component: Blog
     },
     {
@@ -60,33 +60,7 @@ const routes = [
         path: '/admblog',
         name: 'admblog',
         component: AdmBlog
-    },
-    // {
-    //     path: '/create',
-    //     name: 'admin.create',
-    //     component: Create
-    // },
-    // {
-    //     path: '/admin',
-    //     name: 'admin.index',
-    //     component: AdminIndex
-    // },
-    // {
-    //     path: '/blogadm',
-    //     name: 'blogadm.index',
-    //     component: AdminBlog
-    // },
-    // {
-    //     path: '/blogadm/create',
-    //     name: 'blogadm.create',
-    //     component: AdminBlogCreate
-    // },
-    // {
-    //     path: '/books/:id/edit',
-    //     name: 'books.edit',
-    //     component: Edit,
-    //     props: true
-    // },
+    }
 ]
 
 export default createRouter({

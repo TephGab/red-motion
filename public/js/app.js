@@ -26512,7 +26512,7 @@ var routes = [{
   component: _components_Contact_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
 }, {
   path: '/blog',
-  name: 'blog',
+  name: 'post',
   component: _components_Blog_vue__WEBPACK_IMPORTED_MODULE_5__["default"]
 }, {
   path: '/home',
@@ -26526,33 +26526,7 @@ var routes = [{
   path: '/admblog',
   name: 'admblog',
   component: _admin_blog_Index_vue__WEBPACK_IMPORTED_MODULE_9__["default"]
-} // {
-//     path: '/create',
-//     name: 'admin.create',
-//     component: Create
-// },
-// {
-//     path: '/admin',
-//     name: 'admin.index',
-//     component: AdminIndex
-// },
-// {
-//     path: '/blogadm',
-//     name: 'blogadm.index',
-//     component: AdminBlog
-// },
-// {
-//     path: '/blogadm/create',
-//     name: 'blogadm.create',
-//     component: AdminBlogCreate
-// },
-// {
-//     path: '/books/:id/edit',
-//     name: 'books.edit',
-//     component: Edit,
-//     props: true
-// },
-];
+}];
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,vue_router__WEBPACK_IMPORTED_MODULE_10__.createRouter)({
   history: (0,vue_router__WEBPACK_IMPORTED_MODULE_10__.createWebHistory)(),
   routes: routes
