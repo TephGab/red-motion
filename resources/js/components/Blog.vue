@@ -3,8 +3,8 @@
     <section class="text-white mt-5">
         <div class="container" data-aos="fade-up">
             <div class="row">
-                <div class="col-lg-5 pt-3 pt-lg-0 content">
-                    <div class="card" style="background: #0D0D0D" v-for="post in posts.data" :key="post.id">
+                <div class="col-lg-5 pt-3 pt-lg-0 content" v-for="post in posts.data" :key="post.id">
+                    <div class="card" style="background: #0D0D0D">
                         <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
                             <img :src="'assets/img/blog/' + post.mainimage" 
                                 class="img-fluid" />
