@@ -42,8 +42,8 @@ const routes = [
         component: Contact
     },
     {
-        path: '/posts',
-        name: 'post',
+        path: '/blog',
+        name: 'blog',
         component: Blog
     },
     {

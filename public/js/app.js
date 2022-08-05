@@ -26511,8 +26511,8 @@ var routes = [{
   name: 'contact',
   component: _components_Contact_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
 }, {
-  path: '/posts',
-  name: 'post',
+  path: '/blog',
+  name: 'blog',
   component: _components_Blog_vue__WEBPACK_IMPORTED_MODULE_5__["default"]
 }, {
   path: '/home',
